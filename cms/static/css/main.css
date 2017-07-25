@@ -1,0 +1,122 @@
+/*
+
+   Agency Landing Page template styles.
+    
+*/
+
+/****** Fonts ******/
+
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans');
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+
+/****** Override Bootparts styles ******/
+
+.center-aligned-headline {
+    padding-top: 30px;
+    padding-bottom: 22px;
+    background: url(../img/bg.png);
+}
+
+.three-column-content {
+    background: #fff;
+    padding-bottom: 0px;
+}
+
+.three-column-content .column-content {
+    text-align: justify;
+}
+
+
+.two-column-footer {
+    margin-top: 20px;
+}
+
+
+.two-column-footer {
+    background: #000;
+}
+
+.two-column-footer .list-title {
+    color: #999;
+}
+
+.two-column-footer a {
+    color: #f4d425;
+}
+/****** Template custom styles ******/
+
+body {
+    font-family: 'Droid Sans', sans-serif;
+}
+
+.three-column-content-bottom {
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.logo {
+    width: 50%;
+    height: 50%;
+}
+
+.services-icon-img {
+    height: 30%;
+    width: 30%;
+}
+
+/****** Media Queries ******/
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) {
+    
+    /* Override Bootparts Defaults */
+
+    .three-column-content {
+        padding-bottom: 0px;
+    }
+
+    .three-column-content .column-title {
+        font-size: 1.2em;
+    }
+
+    .three-column-content .column-content {
+        font-size: 1.1em;
+        text-align: center;
+    }
+
+    /* left column */
+    .three-column-content .left-column {
+        padding-top: 15px;
+    }
+
+    /* middle column */
+    .three-column-content .middle-column {
+        padding-top: 15px;
+    }
+
+    /*right column */
+    .three-column-content .right-column {
+        padding-top: 15px;
+    }
+
+    /* Template Custom styles */
+
+    .logo {
+        width: 70%;
+        height: 70%;
+    }
+
+    .three-column-content-bottom {
+        padding-top: 0px;
+        padding-bottom: 30px;
+    }
+
+    .services-icon-img {
+        height: 20%;
+        width: 20%;
+    }
+
+
+
+}

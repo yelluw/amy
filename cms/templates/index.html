@@ -1,1 +1,239 @@
-Hi, I'm Amy, a CMS. :)
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Yelluw">
+    <link rel="icon" href="">
+
+    <title>Yelluw - Get the most out of your business.</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{% static "css/ie10-viewport-bug-workaround.css" %}" rel="stylesheet">
+
+    <!-- Bootparts CSS -->
+    <link href="{% static "css/bootparts.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/main.css" %}" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="center-aligned-headline">
+        <div class="container">
+                <div class="row">
+
+                    <div class="headline">
+                        
+                        <p><img src="{% static "img/yelluw-logo.png" %}" class="logo"></p> 
+                    
+                    <!-- end headline -->
+                    </div>
+                
+                <!-- end row -->
+                </div>         
+        <!-- end container -->
+        </div>
+    <!-- end center-aligned-headline -->
+    </div>
+
+
+
+    <div class="three-column-content">
+        
+        <div class="container">
+
+          <div class="row">
+
+            <!-- left column -->
+            <div class="col-lg-4 col-md-4 col-sm-4 left-column">
+              
+              <img src="{% static "img/coding-services-icon.png" %}" class="column-img services-icon-img">
+
+              <p class="column-title">Software Development</p>
+
+              <p class="column-content">
+                Our team develops software applications using 
+                Django, Python and Javascript
+                that fix your complicated business problems, 
+                fit seamlessly into your existing workflow, 
+                and produce net results for your business.
+              </p>
+
+            <!-- end left column -->
+            </div>
+
+            <!-- middle column -->
+            <div class="col-lg-4 col-md-4 col-sm-4 middle-column">
+
+              <img src="{% static "img/digital-marketing-icon.png" %}" class="column-img services-icon-img">
+
+              <p class="column-title">Digital Marketing</p>
+
+              <p class="column-content">
+                We are outreach experts who leverage
+                technology to increase your market share.
+                Our focus is on tangible results and not
+                on vanity metrics.  
+              </p>
+              
+            <!-- end middle column -->
+            </div>  
+
+            <!-- right column -->
+            <div class="col-lg-4 col-md-4 col-sm-4 right-column">
+              
+              <img src="{% static "img/social-media-management.png" %}" class="column-img services-icon-img">
+
+              <p class="column-title">Social Media</p>
+
+              <p class="column-content">
+                Hire us to find and work with key influencers in social networks 
+                to captivate their audience and boost your growth.
+              </p>
+
+            <!-- end right column -->
+            </div>          
+           
+          <!-- end row -->
+          </div>
+
+      <!-- end container-->
+      </div>
+
+    <!-- end three-column-content -->
+    </div>
+
+    <!-- Two three-column-content components are used -->
+
+    <div class="three-column-content three-column-content-bottom">
+        
+        <div class="container">
+
+          <div class="row">
+
+            <!-- left column -->
+            <div class="col-lg-4 col-md-4 col-sm-4 left-column">
+              
+              <img src="{% static "img/brand-strategy.png" %}" class="column-img services-icon-img">
+
+              <p class="column-title">Strategy</p>
+
+              <p class="column-content">
+                Uniquely position yourself in the mind of your customers
+                with creative brand strategies engineered to captivate their
+                attention.
+              </p>
+
+            <!-- end left column -->
+            </div>
+
+            <!-- middle column -->
+            <div class="col-lg-4 col-md-4 col-sm-4 middle-column">
+
+              <img src="{% static "img/content-production-icon.png" %}" class="column-img services-icon-img">
+
+              <p class="column-title">Content Production</p>
+
+              <p class="column-content">
+                Drive people to your business
+                with captivating content.
+                Outmaneuver your competition by
+                hijacking their audiences through
+                laser targeted content that brings home
+                results. We work with established and emerging
+                formats.
+              </p>
+              
+            <!-- end middle column -->
+            </div>  
+
+            <!-- right column -->
+            <div class="col-lg-4 col-md-4 col-sm-4 right-column">
+              
+             <img src="{% static "img/sales-automation-icon.png" %}" class="column-img services-icon-img">
+
+              <p class="column-title">Sales Automation</p>
+
+              <p class="column-content"> 
+                Allow us to turn your computers and phones
+                into 24 hour salespeople that are always
+                delivering results. Augment your sales
+                process by automating the repetitive tasks.
+                Focus on results. Not tasks.
+              </p>
+
+            <!-- end right column -->
+            </div>          
+           
+          <!-- end row -->
+          </div>
+
+      <!-- end container-->
+      </div>
+
+    <!-- end three-column-content -->
+    </div>
+
+    <div class="two-column-footer">
+        
+        <div class="container">
+
+          <div class="row">
+
+            <!-- left column -->
+            <div class="col-lg-6 col-md-6 col-sm-6 left-column">
+              <ul class="list-unstyled">
+                <li class="list-title">Navigation</li>
+                <li><a href="{% url "index" %}">Contact Us</a></li>
+              </ul>
+            <!-- end left column -->
+            </div>
+
+            <!-- right column -->
+            <div class="col-lg-6 col-md-6 col-sm-6 right-column">
+              <ul class="list-unstyled">
+                <li class="list-title">Social</li>
+                <li><a href="https://www.facebook.com/Yelluw-309813039405490/">Facebook</a></li>
+                <li><a href="https://anchor.fm/yelluw">Anchor</a></li>
+
+              </ul>
+            <!-- end right column -->
+            </div>  
+           
+          <!-- end row -->
+          </div>
+
+      <!-- end container-->
+      </div>
+
+    <!-- end two-column-footer -->
+    </div>
+ 
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="{% static "js/bootstrap.js" %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+  </body></html>
