@@ -1,19 +1,25 @@
 from django import forms
 
 
-class ContactForm(forms.Form):
+class WorkInquiryContactForm(forms.Form):
     """
-    Contact form for general inquiries
-
-    TODO:
-        - See if using # https://github.com/stefanfoulis/django-phonenumber-field
-          is a good choice for this instance.
-
+    Conact form for work inquiries
     """
-    inquiry_type = forms.ChoiceField()
-    name = forms.CharField(widget=forms.TextInput(attrs={'class': ''}), max_length=140)
-    email = forms.EmailFiel(widget=forms.EmailInput(attrs={'class': ''}))
-    company = forms.CharField(widget=forms.TextInput(attrs={'class': ''}), max_length=140)
-    phone = forms.CharField(widget=forms.TextInput(attrs={'class': ''}), max_length=40)
-    message = forms.CharField(widget=forms.Textarea(attrs={}))
+
+    CHOICES = (
+            ("1", "I'd like to explore working with Yelluw"),
+            ("2", "I have a press inquiry for Yelluw"),
+            ("3", "I'd like to grow my personal brand"),
+            ("4", "I'm a small/medium-sized business owner/manager and want help driving growth"),
+        )
+
+    ATTRS = {"class": "form-control"}
+
+
+    inquiry_type = forms.ChoiceField(widget=forms.RadioSelect(), choices=CHOICES)
+    name = forms.CharField(widget=forms.TextInput(attrs=ATTRS), max_length=140)
+    email = forms.EmailField(widget=forms.EmailInput(attrs=ATTRS))
+    company = forms.CharField(widget=forms.TextInput(attrs=ATTRS), max_length=140)
+    phone = forms.CharField(widget=forms.TextInput(attrs=ATTRS), max_length=40)
+    message = forms.CharField(widget=forms.Textarea(attrs=ATTRS))
 
