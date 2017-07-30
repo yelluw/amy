@@ -180,4 +180,12 @@ body {
         height: 20%;
         width: 20%;
     }
+
+    .form-header {
+        font-size: 2.0em;
+    }
+
+    .prospect-contact-form {
+        font-size: .8em;
+    }
 }

@@ -10,7 +10,7 @@ class WorkInquiryContactForm(forms.Form):
             ("1", "I'd like to explore working with Yelluw"),
             ("2", "I have a press inquiry for Yelluw"),
             ("3", "I'd like to grow my personal brand"),
-            ("4", "I'm a small/medium-sized business owner/manager and want help driving growth"),
+            ("4", "I'm a business owner and want help driving growth"),
         )
 
     ATTRS = {"class": "form-control"}
