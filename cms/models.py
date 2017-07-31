@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class WorkInquiryContact(models.Model):
@@ -17,3 +18,18 @@ class WorkInquiryContact(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class BlogArticle(models.Model):
+    """
+    Used for common blog articles or posts.
+    """
+    author = models.ForeignKey(User)
+    title = models.TextField()
+    slug = models.SlugField(max_length=60)
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.title
