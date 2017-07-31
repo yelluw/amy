@@ -28,6 +28,14 @@ def index(request):
                 message=form.cleaned_data["message"]
             )
 
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('thank_you'))
 
     return render(request, "index.html", {"form": WorkInquiryContactForm()})
+
+
+def thank_you(request):
+    """
+    View user is redirected to
+    after submitting the work inquiry contact form
+    """
+    return render(request, "thank-you.html")
