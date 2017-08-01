@@ -29,6 +29,9 @@ class BlogArticle(models.Model):
     slug = models.SlugField(max_length=60)
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField(default=False)
+    category = models.TextField()
+    featured = models.BooleanField(default=False)
 
 
     def __str__(self):

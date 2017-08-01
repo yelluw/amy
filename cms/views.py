@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.contrib import messages 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 
 from .forms import WorkInquiryContactForm
 
-from .models import WorkInquiryContact
+from .models import WorkInquiryContact, BlogArticle
 
 
 def index(request):
@@ -39,3 +39,25 @@ def thank_you(request):
     after submitting the work inquiry contact form
     """
     return render(request, "thank-you.html")
+
+
+def featured_articles(request):
+    """
+    Featured articles are those thta have
+    a specific business purpose and have
+    precendence over others.
+    """
+    featured_articles = BlogArticle.objects.filter(featured=True)
+    return render(request, "featured_articles.html", {"featured_articles": featured_articles})
+
+
+def article(request, article_slug, article_id):
+    """
+    View pubished BlogArticle from DB
+    """
+    try:
+        article = BlogArticle.objects.get(id=article_id, published=True)
+    except BlogArticle.DoesNotExist:
+        raise Http404("Article does not exists")
+
+    return render(request, "article.html", {"article": article})
