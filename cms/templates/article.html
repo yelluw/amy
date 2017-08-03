@@ -1,5 +1,8 @@
 {% extends "content-layout.html" %}
 {% load static %}
+
+{% block title %} {{article.title|title }} {% endblock title %}
+
 {% block content %}
 
     <div class="blog-navigation">
