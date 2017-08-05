@@ -43,14 +43,6 @@ class IntegrationTest(TestCase):
         )
 
 
-    def test_user_username(self):
-        self.assertEqual(self.user.username, "test")
-
-
-    def test_published_blog_article_slug(self):
-        self.assertEqual(self.published_blog_article.slug, "testing-testing-123")
-
-
     def test_index(self):
         response = self.client.get(reverse("index"))
         self.assertEqual(response.status_code, 200)
