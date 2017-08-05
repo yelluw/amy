@@ -88,6 +88,7 @@ class WorkInquiryFormUnitTest(TestCase):
     Test the actual form and not the view
     """
 
+
     def test_work_inquiry_form(self):
         data = {
             "inquiry_type": 1,
