@@ -5,12 +5,13 @@ from django.core.urlresolvers import reverse
 
 from cms.models import BlogArticle
 
+from cms.forms import WorkInquiryContactForm
+
+#command: python3 manage.py test --verbosity=2
 
 class IntegrationTest(TestCase):
     """
-    Integration tests for web pages
-
-    command: python3 manage.py test --verbosity=2
+    Integration tests for views
     """
 
 
@@ -80,3 +81,21 @@ class IntegrationTest(TestCase):
             )
         )
         self.assertEqual(response.status_code, 404)
+
+
+class WorkInquiryFormUnitTest(TestCase):
+    """
+    Test the actual form and not the view
+    """
+
+    def test_work_inquiry_form(self):
+        data = {
+            "inquiry_type": 1,
+            "name": "Test",
+            "email": "test@test.com",
+            "company": "Test Corp.",
+            "phone": "+1 (123)456-7890",
+            "message": "This is a test",
+        }
+        form = WorkInquiryContactForm(data=data)
+        self.assertTrue(form.is_valid())
