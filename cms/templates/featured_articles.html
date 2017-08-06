@@ -16,7 +16,7 @@
 
             <div class="row">
 
-                <p class="headline">Featured Articles</p>
+                <p class="headline">Must Read:</p>
 
                 {% for featured_article in featured_articles %}
                     <p><a href="{% url "article" featured_article.slug featured_article.id %}" class="link">{{featured_article.title}}</a></p>
@@ -34,7 +34,7 @@
 
             <div class="row">
 
-                <p class="headline">Latest Articles</p>
+                <p class="headline">Newest Articles:</p>
 
 
 
