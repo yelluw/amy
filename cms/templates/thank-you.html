@@ -26,19 +26,21 @@
             
             <div class="links">
 
-                <p>In the meantime, check out the following links:</p>
+                <p>In the meantime, visit any of the following links to know more:</p>
 
                 <p class="link"><a href="https://github.com/yelluw/amy">Our latest Python and Django project</a></p>
                 <p class="link"><a href="https://yelluw.github.io/Bootparts">The Bootparts components framework</a></p>
                 <p class="link"><a href="">The official Facebook page</a></p>
 
+                <br>
+                <p>Or sit back and read the latest articles on our <a href="{% url "featured_articles" %}">blog</a>:</p>
 
                 {% for featured_article in featured_articles %}
-                    <p class="link"><a href="{% url "article" featured_article.slug featured_article.id %}">{{featured_article.title}}</a></p>
+                    <p class="link"><a href="{% url "article" featured_article.slug featured_article.id %}">{{featured_article.title|title}}</a></p>
                 {% endfor %}
 
                 {% for article in articles %}
-                    <p class="link"><a href="{% url "article" article.slug article.id %}">{{article.title}}</a></p>
+                    <p class="link"><a href="{% url "article" article.slug article.id %}">{{article.title|title}}</a></p>
                 {% endfor %}
 
 
