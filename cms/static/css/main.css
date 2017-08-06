@@ -137,6 +137,39 @@ body {
     font-size: .6em;
 }
 
+/* Thank You Page Styles */
+
+.thank-you {
+    background: #fff;
+    padding-top: 50px;
+    padding-bottom: 100px;
+  
+}
+
+.thank-you .message {
+    font-size: 2.0em;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+}
+
+.thank-you .message .underline {
+    border-bottom: 1px #000 solid;
+}
+
+.thank-you .links {
+    padding-top: 25px;
+    text-align: center;
+}
+
+.thank-you .links p {
+    font-size: 1.5em;
+}
+
+.thank-you .links .link {
+    padding-top: 20px;
+}
+
+
 /* Blog Styles */
 
 /* Article Styles */

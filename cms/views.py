@@ -49,7 +49,17 @@ def thank_you(request):
     View user is redirected to
     after submitting the work inquiry contact form
     """
-    return render(request, "thank-you.html", {"header_link": BLOG_LINK})
+    articles = BlogArticle.objects.filter()
+
+    return render(
+                request,
+                "thank-you.html", 
+                {
+                    "header_link": BLOG_LINK,
+                    "featured_articles": articles.filter(featured=True),
+                    "articles": articles.filter(featured=False).order_by('-id')
+                }
+            )
 
 
 def featured_articles(request):
