@@ -49,6 +49,7 @@
 
 body {
     font-family: 'Droid Sans', sans-serif;
+    background: url(../img/bg.png);
 }
 
 .three-column-content-bottom {
@@ -138,23 +139,40 @@ body {
 
 /* Blog Styles */
 
-/* Navigation */
-
-.homepage {
-    text-align: center;
-}
-
-
-/* Branding */
-
-.blog-logo {
-    padding-top: 15px;
-    width: 20%;
-    height: 20%;
-}
-
-
 /* Article Styles */
+
+.featured-articles {
+    padding-top: 40px;
+    background: #fff;
+}
+
+.featured-articles .headline {
+    font-size: 2.0em;
+    font-family: 'Merriweather', serif;
+}
+
+.featured-articles .link {
+    padding-left: 40px;
+    font-size: 1.5em;
+}
+
+.latest-articles {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: #fff;
+}
+
+.latest-articles .headline {
+    font-size: 2.0em;
+    font-family: 'Merriweather', serif;
+}
+
+.latest-articles .link {
+    padding-left: 40px;
+    font-size: 1.5em;
+}
+
+
 .article-header {
     padding-top: 20px;
     padding-bottom: 5px;
@@ -224,11 +242,15 @@ body {
         padding-top: 15px;
     }
 
+    .two-column-footer .list-item {
+        font-size: .8em;    
+    }
+
     /* Template Custom styles */
 
     .logo {
-        width: 70%;
-        height: 70%;
+        width: 80%;
+        height: 80%;
     }
 
     .three-column-content-bottom {
@@ -251,16 +273,25 @@ body {
 
     /* Blog Styles */
 
-    /* Branding */
-
-    .blog-logo {
-        padding-top: 10px;
-        padding-left: 20px;
-        width: 50%;
-        height: 50%;
-    }
 
     /* Article Styles */
+
+    .featured-articles .headline {
+        padding-left: 20px;
+    }
+
+    .featured-articles .link {
+        font-size: .9em;
+    }
+
+    .latest-articles .headline {
+        padding-left: 20px;
+    }
+
+    .latest-articles .link {
+        font-size: 1.2em;
+    }
+
     .article-content {
         padding-left: 5px;
         padding-right: 5px;

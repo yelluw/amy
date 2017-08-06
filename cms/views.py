@@ -58,12 +58,13 @@ def featured_articles(request):
     a specific business purpose and have
     precendence over others.
     """
-    featured_articles = BlogArticle.objects.filter(featured=True)
+    articles = BlogArticle.objects.filter()
     return render(
                 request,
                 "featured_articles.html",
                 {
-                    "featured_articles": featured_articles,
+                    "featured_articles": articles.filter(featured=True),
+                    "articles": articles.filter(featured=False),
                     "header_link": INDEX_LINK
                 }
             )
