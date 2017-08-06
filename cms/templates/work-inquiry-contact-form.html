@@ -1,0 +1,80 @@
+<div class="prospect-contact-form">
+
+    <div class="container">
+
+    <div class="col-lg-10 col-md-10">
+        
+            <div class="form-container">
+                <form action="{% url "index" %}" method="POST">{% csrf_token %}
+                    <p class="form-header">WORK WITH US</p>
+
+                    <div class="form-group">
+                        {{ form.inquiry_type.errors }}
+                        <label for="form.inquiry_type.id_for_label">Tell us what you are looking for: <span class="required">*</span></label>
+                        {{ form.inquiry_type }}
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ form.name.errors }}
+                            <label for="form.name.id_for_label">Name: <span class="required">*</span></label>
+                            {{ form.name }}
+                        </div>
+                        </div>
+                    
+                        <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ form.email.errors }}
+                            <label for="form.email.id_for_label">Email: <span class="required">*</span></label>
+                            {{ form.email }}
+                        </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ form.company.errors }}
+                            <label for="form.company.id_for_label">Company: <span class="required">*</span></label>
+                            {{ form.company }}
+                        </div>
+                        </div>
+                    
+                        <div class="col-lg-6">
+                        <div class="form-group">
+                            {{ form.phone.errors }}
+                            <label for="form.phone.id_for_label">Phone: <span class="required">*</span></label>
+                            {{ form.phone }}
+                        </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                    
+                        <div class="col-lg-6">
+
+                        <div class="form-group">
+                            {{ form.message.errors }}
+                            <label for="form.message.id_for_label">Tell us about the task at hand: <span class="required">*</span></label>
+                            {{ form.message }}
+                        </div>
+                        
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn-form">Submit</button>
+                    <p class="disclaimer"> By submitting this form you agree to our terms and conditions. </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- end prospect-contact-form  -->
+</div>

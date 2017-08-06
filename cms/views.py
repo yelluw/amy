@@ -1,11 +1,15 @@
 from django.shortcuts import render
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib import messages 
 from django.http import HttpResponseRedirect, Http404
 
 from .forms import WorkInquiryContactForm
 
 from .models import WorkInquiryContact, BlogArticle
+
+
+INDEX_LINK = reverse_lazy("index")
+BLOG_LINK = reverse_lazy("featured_articles")
 
 
 def index(request):
@@ -30,7 +34,14 @@ def index(request):
 
             return HttpResponseRedirect(reverse('thank_you'))
 
-    return render(request, "index.html", {"form": WorkInquiryContactForm()})
+    return render(
+            request,
+            "index.html",
+                {
+                    "form": WorkInquiryContactForm(),
+                    "header_link": INDEX_LINK
+                }
+            )
 
 
 def thank_you(request):
@@ -38,7 +49,7 @@ def thank_you(request):
     View user is redirected to
     after submitting the work inquiry contact form
     """
-    return render(request, "thank-you.html")
+    return render(request, "thank-you.html", {"header_link": BLOG_LINK})
 
 
 def featured_articles(request):
@@ -48,7 +59,14 @@ def featured_articles(request):
     precendence over others.
     """
     featured_articles = BlogArticle.objects.filter(featured=True)
-    return render(request, "featured_articles.html", {"featured_articles": featured_articles})
+    return render(
+                request,
+                "featured_articles.html",
+                {
+                    "featured_articles": featured_articles,
+                    "header_link": INDEX_LINK
+                }
+            )
 
 
 def article(request, article_slug, article_id):
@@ -60,4 +78,11 @@ def article(request, article_slug, article_id):
     except BlogArticle.DoesNotExist:
         raise Http404("Article does not exists")
 
-    return render(request, "article.html", {"article": article})
+    return render(
+            request,
+            "article.html",
+                {
+                    "article": article,
+                    "header_link": BLOG_LINK
+                }
+            )

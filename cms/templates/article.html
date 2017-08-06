@@ -1,21 +1,12 @@
-{% extends "content-layout.html" %}
+{% extends "layout.html" %}
+
 {% load static %}
 
-{% block title %} {{article.title|title }} {% endblock title %}
+{% block title %}{{article.title|title }}{% endblock title %}
 
 {% block content %}
 
-    <div class="blog-navigation">
-        <div class="container">
-            <div class="row">
-            <p class="homepage">
-                <a href="{% url "featured_articles" %}">
-                    <img src="{% static "img/yelluw-logo.png" %}" class="blog-logo">
-                </a>
-            </p>
-            </div>
-        </div>
-    </div>
+{% include "header.html"%}
 
     <div class="center-aligned-headline article-header">
 
@@ -76,4 +67,6 @@
 
     <!-- end one-column-content -->
 </div>
+
+{% include "footer.html" %}
 {% endblock content %}

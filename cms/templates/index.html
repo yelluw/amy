@@ -1,61 +1,12 @@
+{% extends "layout.html" %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="Yelluw">
-    <link rel="icon" href="">
+{% block title %}Get the most out of your business{% endblock title %}
 
-    <title>Yelluw - Get the most out of your business.</title>
+{% block content %}
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="{% static "css/ie10-viewport-bug-workaround.css" %}" rel="stylesheet">
-
-    <!-- Bootparts CSS -->
-    <link href="{% static "css/bootparts.css" %}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{% static "css/main.css" %}" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-
-    <div class="center-aligned-headline">
-        <div class="container">
-                <div class="row">
-
-                    <div class="headline">
-                        
-                        <p><img src="{% static "img/yelluw-logo.png" %}" class="logo"></p> 
-                    
-                    <!-- end headline -->
-                    </div>
-                
-                <!-- end row -->
-                </div>         
-        <!-- end container -->
-        </div>
-    <!-- end center-aligned-headline -->
-    </div>
-
-
+    {% include "header.html" %}
 
     <div class="three-column-content">
         
@@ -193,132 +144,8 @@
     <!-- end three-column-content -->
     </div>
 
-    <div class="prospect-contact-form">
-
-      <div class="container">
-
-        <div class="col-lg-10 col-md-10">
-            
-                <div class="form-container">
-                    <form action="{% url "index" %}" method="POST">{% csrf_token %}
-                        <p class="form-header">WORK WITH US</p>
-
-                        <div class="form-group">
-                            {{ form.inquiry_type.errors }}
-                            <label for="form.inquiry_type.id_for_label">Tell us what you are looking for: <span class="required">*</span></label>
-                            {{ form.inquiry_type }}
-                        </div>
-
-
-                        <div class="row">
-
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                                {{ form.name.errors }}
-                                <label for="form.name.id_for_label">Name: <span class="required">*</span></label>
-                                {{ form.name }}
-                            </div>
-                          </div>
-                        
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                              {{ form.email.errors }}
-                                <label for="form.email.id_for_label">Email: <span class="required">*</span></label>
-                                {{ form.email }}
-                            </div>
-                          </div>
-
-                        </div>
-
-                        <div class="row">
-
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                                {{ form.company.errors }}
-                                <label for="form.company.id_for_label">Company: <span class="required">*</span></label>
-                                {{ form.company }}
-                            </div>
-                          </div>
-                        
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                                {{ form.phone.errors }}
-                                <label for="form.phone.id_for_label">Phone: <span class="required">*</span></label>
-                                {{ form.phone }}
-                            </div>
-                          </div>
-
-                        </div>
-
-                        <div class="row">
-                        
-                          <div class="col-lg-6">
-
-                            <div class="form-group">
-                                {{ form.message.errors }}
-                                <label for="form.message.id_for_label">Tell us about the task at hand: <span class="required">*</span></label>
-                                {{ form.message }}
-                            </div>
-                          
-                          </div>
-
-                        </div>
-
-                        <button type="submit" class="btn-form">Submit</button>
-                        <p class="disclaimer"> By submitting this form you agree to our terms and conditions. </p>
-                    </form>
-                </div>
-            </div>
-      </div>
-
-    <!-- end prospect-contact-form  -->
-    </div>
-
-    <div class="two-column-footer">
-        
-        <div class="container">
-
-          <div class="row">
-
-            <!-- left column -->
-            <div class="col-lg-6 col-md-6 col-sm-6 left-column">
-              <ul class="list-unstyled">
-                <li class="list-title">Navigation</li>
-                <li><a href="{% url "index" %}">Blog</a></li>
-                <li><a href="https://github.com/yelluw">Github</a></li>
-                <li><a href="{% url "index" %}">Podcast</a></li>
-                <li><a href="{% url "index" %}">Terms & Conditions</a></li>
-              </ul>
-            <!-- end left column -->
-            </div>
-
-            <!-- right column -->
-            <div class="col-lg-6 col-md-6 col-sm-6 right-column">
-              <ul class="list-unstyled">
-                <li class="list-title">Social</li>
-                <li><a href="https://www.facebook.com/Yelluw-309813039405490/">Facebook</a></li>
-                <li><a href="https://anchor.fm/yelluw">Anchor</a></li>
-
-              </ul>
-            <!-- end right column -->
-            </div>  
-           
-          <!-- end row -->
-          </div>
-
-      <!-- end container-->
-      </div>
-
-    <!-- end two-column-footer -->
-    </div>
-
+    {% include "work-inquiry-contact-form.html" %}
     
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static "js/jquery.js" %}"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="{% static "js/bootstrap.js" %}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-  </body></html>
+    {% include "footer.html" %}
+
+{% endblock content %}
