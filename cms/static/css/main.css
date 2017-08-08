@@ -17,7 +17,8 @@
 .center-aligned-headline {
     padding-top: 30px;
     padding-bottom: 22px;
-    background: url(../img/bg.png);
+    background: #e1e1e1;
+
 }
 
 .three-column-content {
@@ -30,7 +31,7 @@
 }
 
 .two-column-footer {
-    background: url(../img/bg.png);
+    background: #000;
 }
 
 .two-column-footer .list-title {
@@ -49,7 +50,7 @@
 
 body {
     font-family: 'Droid Sans', sans-serif;
-    background: url(../img/bg.png);
+    background: #000;
 }
 
 .underline {
@@ -62,8 +63,8 @@ body {
 }
 
 .logo {
-    width: 50%;
-    height: 50%;
+    width: 25%;
+    height: 25%;
 }
 
 .services-icon-img {
@@ -282,8 +283,8 @@ body {
     /* Template Custom styles */
 
     .logo {
-        width: 80%;
-        height: 80%;
+        width: 50%;
+        height: 50%;
     }
 
     .three-column-content-bottom {
