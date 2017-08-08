@@ -19,7 +19,7 @@
                 <p class="headline">Must Read:</p>
 
                 {% for featured_article in featured_articles %}
-                    <p><a href="{% url "article" featured_article.slug featured_article.id %}" class="link">{{featured_article.title|title}}</a></p>
+                    <p><a href="{% url "article" featured_article.slug featured_article.id %}" class="link">{{featured_article.title|title|truncatechars:25}}</a></p>
                 {% endfor %}
             </div>
         
@@ -39,7 +39,7 @@
 
 
                 {% for article in articles %}
-                    <p><a href="{% url "article" article.slug article.id %}" class="link">{{ article.title|title }}</a></p>
+                    <p><a href="{% url "article" article.slug article.id %}" class="link">{{ article.title|title|truncatechars:25 }}</a></p>
                 {% endfor %}
 
 
