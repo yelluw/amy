@@ -17,7 +17,7 @@
 .center-aligned-headline {
     padding-top: 30px;
     padding-bottom: 22px;
-    background: #e1e1e1;
+    background: #b9c9da;
 
 }
 
@@ -31,7 +31,7 @@
 }
 
 .two-column-footer {
-    background: #000;
+    background: #0e2439;
 }
 
 .two-column-footer .list-title {
@@ -39,7 +39,7 @@
 }
 
 .two-column-footer a {
-    color: #f4d425;
+    color: #b9c9da;
 }
 
 .one-column-content {
