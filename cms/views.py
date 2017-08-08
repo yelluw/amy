@@ -57,7 +57,7 @@ def thank_you(request):
                 {
                     "header_link": BLOG_LINK,
                     "featured_articles": articles.filter(featured=True),
-                    "articles": articles.filter(featured=False).order_by('-id')
+                    "articles": articles.filter(featured=False).order_by('-id')[:3] #newest 3 articles
                 }
             )
 
