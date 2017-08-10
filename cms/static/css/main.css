@@ -17,7 +17,7 @@
 .center-aligned-headline {
     padding-top: 30px;
     padding-bottom: 22px;
-    background: #e1e1e1;
+    background: #fff;
 
 }
 
@@ -31,7 +31,7 @@
 }
 
 .two-column-footer {
-    background: #0e2439;
+    background: #000;
 }
 
 .two-column-footer .list-title {
@@ -39,7 +39,7 @@
 }
 
 .two-column-footer a {
-    color: #b9c9da;
+    color: #fff;
 }
 
 .one-column-content {
@@ -63,8 +63,8 @@ body {
 }
 
 .logo {
-    width: 25%;
-    height: 25%;
+    width: 35%;
+    height: 35%;
 }
 
 .services-icon-img {
@@ -283,8 +283,8 @@ body {
     /* Template Custom styles */
 
     .logo {
-        width: 50%;
-        height: 50%;
+        width: 65%;
+        height: 65%;
     }
 
     .three-column-content-bottom {
