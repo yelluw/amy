@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib import messages 
@@ -68,13 +69,26 @@ def featured_articles(request):
     a specific business purpose and have
     precendence over others.
     """
-    articles = BlogArticle.objects.filter()
+    articles_list = BlogArticle.objects.all()
+
+    # Only paginate articles nt marked as featured
+    paginator = Paginator(articles_list.filter(featured=False), 2)
+
+    try:
+        articles = paginator.page(request.GET.get('page'))
+    
+    except PageNotAnInteger:
+        articles = paginator.page(1)
+    
+    except EmptyPage:
+        articles = paginator.page(paginator.num_pages)
+
     return render(
                 request,
                 "featured_articles.html",
                 {
-                    "featured_articles": articles.filter(featured=True),
-                    "articles": articles.filter(featured=False),
+                    "featured_articles": articles_list.filter(featured=True),
+                    "articles": articles,
                     "header_link": INDEX_LINK
                 }
             )

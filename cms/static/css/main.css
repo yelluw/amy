@@ -194,6 +194,7 @@ body {
     padding-top: 20px;
     padding-bottom: 40px;
     background: #fff;
+    padding-bottom: 40px;
 }
 
 .latest-articles .headline {
@@ -238,6 +239,15 @@ body {
     padding-top: 30px;
     text-align: justify;
     background: #fff;
+}
+
+.pagination {
+    width: 100%;
+    background: #fff;
+}
+
+.pagination p {
+    padding-left: 40px;
 }
 
 
