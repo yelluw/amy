@@ -1,3 +1,7 @@
+# Environment settigs
+
+environment_settings.py
+
 # Local dev settings
 */migrations/*
 *.DS_Store
