@@ -7,10 +7,10 @@ class WorkInquiryContactForm(forms.Form):
     """
 
     CHOICES = (
-            ("1", "I'd like to explore working with Yelluw"),
-            ("2", "I have a press inquiry for Yelluw"),
-            ("3", "I'd like to grow my personal brand"),
-            ("4", "I'm a business owner and want help driving growth"),
+            ("general", "I'd like to explore working with Yelluw"),
+            ("software development", "I need software development services"),
+            ("digital marketing", "I'm a business owner and want help driving growth"),
+            ("content production", "I need quality content produced"),
         )
 
     ATTRS = {"class": "form-control"}

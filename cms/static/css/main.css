@@ -241,13 +241,16 @@ body {
     background: #fff;
 }
 
-.pagination {
-    width: 100%;
+/* Pagination */
+
+.blog-pagination {
     background: #fff;
+    padding-bottom: 40px;
 }
 
-.pagination p {
+.blog-pagination p {
     padding-left: 40px;
+    font-weight: 700;
 }
 
 
