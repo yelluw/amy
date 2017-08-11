@@ -94,4 +94,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-from enviroment_settings import *
+from environment_settings import *
