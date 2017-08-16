@@ -9,7 +9,7 @@
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:site" content="@yelluwmedia"/>
     <meta name="twitter:title" content="{{ article.title|title }}"/>
-    <meta name="twitter:description" content="{{ article.content|title|truncatechars:40 }}"/>
+    <meta name="twitter:description" content="{{ article.content|title|truncatechars:40|striptags}}"/>
     <meta name="twitter:image" content="{% static "img/brand/logo.png" %}" />
 
 {% endblock twittercard %}
