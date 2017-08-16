@@ -26,15 +26,25 @@
             
             <div class="links">
 
+            {% if articles %}
+
                 <p>In the meantime, spend some time on our <span class="underline">must read</span> <a href="{% url "featured_articles" %}">blog</a>:</p>
 
-                {% for featured_article in featured_articles %}
-                    <p class="link"><a href="{% url "article" featured_article.slug featured_article.id %}">{{featured_article.title|title|truncatechars:25}}</a></p>
-                {% endfor %}
+                {% if featured_articles %}
+                    {% for featured_article in featured_articles %}
+                        <p class="link"><a href="{% url "article" featured_article.slug featured_article.id %}">{{featured_article.title|title|truncatechars:25}}</a></p>
+                    {% endfor %}
+                {% endif %}
 
                 {% for article in articles %}
                     <p class="link"><a href="{% url "article" article.slug article.id %}">{{article.title|title|truncatechars:25}}</a></p>
                 {% endfor %}
+        
+            {% else %}
+
+                <p><span style="font-size: 3.0em;"> 😀 👍 </span></p>
+
+            {% endif %}
 
 
             </div>

@@ -9,7 +9,7 @@
 {% include "header.html" %}
 
 
-    
+{% if featured_articles %}    
     <div class="featured-articles">
     
         <div class="container">
@@ -26,7 +26,7 @@
         </div>
 
     </div>
-
+{% endif %}
 
     <div class="latest-articles">
     
@@ -34,7 +34,7 @@
 
             <div class="row">
 
-                <p class="headline">Newest Articles:</p>
+                <p class="headline">Latest Articles:</p>
 
 
 
@@ -57,11 +57,11 @@
         
                     <p class="pull-left">
                     {% if articles.has_previous %}
-                        <a href="?page={{ articles.previous_page_number }}">< Previous Page </a>
+                        <a href="?page={{ articles.previous_page_number }}">< Previous &nbsp;</a>
                     {% endif %}
-                    |
+                    
                     {% if articles.has_next %}
-                        <a href="?page={{ articles.next_page_number }}">Read more ></a>
+                        <a href="?page={{ articles.next_page_number }}"> Next ></a>
                     {% endif %}
                     </p>
             </div>

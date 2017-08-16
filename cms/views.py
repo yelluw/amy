@@ -57,8 +57,8 @@ def thank_you(request):
                 "thank-you.html", 
                 {
                     "header_link": BLOG_LINK,
-                    "featured_articles": articles.filter(featured=True),
-                    "articles": articles.filter(featured=False).order_by('-id')[:3] #newest 3 articles
+                    "featured_articles": articles.filter(featured=True, published=True),
+                    "articles": articles.filter(featured=False, published=True).order_by('-id')[:3] #newest 3 articles
                 }
             )
 
@@ -72,7 +72,7 @@ def featured_articles(request):
     articles_list = BlogArticle.objects.all()
 
     # Only paginate articles nt marked as featured
-    paginator = Paginator(articles_list.filter(featured=False), 2)
+    paginator = Paginator(articles_list.filter(featured=False, published=True), 2)
 
     try:
         articles = paginator.page(request.GET.get('page'))
@@ -87,7 +87,7 @@ def featured_articles(request):
                 request,
                 "featured_articles.html",
                 {
-                    "featured_articles": articles_list.filter(featured=True),
+                    "featured_articles": articles_list.filter(featured=True, published=True),
                     "articles": articles,
                     "header_link": INDEX_LINK
                 }
