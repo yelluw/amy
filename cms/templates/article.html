@@ -35,7 +35,7 @@
 
                         <div class="metadata">
                         
-                            <p class="">Published on {{ article.created|date:"M d Y" }} by {{ article.author|title }} </p>
+                            <p class="">Published on {{ article.created|date:"M d Y" }} by {{ article.author.get_full_name|title }}</p>
                     
                         <!-- end headline -->
                         </div>
