@@ -20,6 +20,18 @@ class WorkInquiryContact(models.Model):
         return self.email
 
 
+class BlogArticleCategory(models.Model):
+    """
+    Used to organize blog posts by category
+    """
+    name = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.name
+
+
 class BlogArticle(models.Model):
     """
     Used for common blog articles or posts.
@@ -30,7 +42,7 @@ class BlogArticle(models.Model):
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(default=False)
-    category = models.TextField()
+    category = models.ForeignKey(BlogArticleCategory)
     featured = models.BooleanField(default=False)
 
 

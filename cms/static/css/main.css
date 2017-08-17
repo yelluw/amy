@@ -241,6 +241,10 @@ body {
     background: #fff;
 }
 
+ .article-category {
+    font-size: 0.7em;
+}
+
 /* Pagination */
 
 .blog-pagination {
