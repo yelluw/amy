@@ -65,14 +65,14 @@ def thank_you(request):
 
 def featured_articles(request):
     """
-    Featured articles are those thta have
+    Featured articles are those that have
     a specific business purpose and have
     precendence over others.
     """
     articles_list = BlogArticle.objects.all()
 
-    # Only paginate articles nt marked as featured
-    paginator = Paginator(articles_list.filter(featured=False, published=True), 2)
+    # Only paginate articles not marked as featured
+    paginator = Paginator(articles_list.filter(featured=False, published=True).order_by('-id'), 2)
 
     try:
         articles = paginator.page(request.GET.get('page'))
