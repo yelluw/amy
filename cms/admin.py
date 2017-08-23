@@ -9,7 +9,7 @@ class WorkInquiryContactAdmin(admin.ModelAdmin):
 
 class BlogArticleAdmin(admin.ModelAdmin):
     date_hierarchy = "created"
-    list_display = ("title", "published", "featured", "author", "created",)
+    list_display = ("title", "published", "featured", "author", "created", "blog_article_category")
     prepopulated_fields = {"slug": ("title",)}
 
 

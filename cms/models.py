@@ -37,6 +37,7 @@ class BlogArticle(models.Model):
     Used for common blog articles or posts.
     """
     author = models.ForeignKey(User)
+    blog_article_category = models.ForeignKey(BlogArticleCategory, default=1)
     title = models.TextField()
     slug = models.SlugField(max_length=60)
     content = models.TextField()
