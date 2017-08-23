@@ -44,6 +44,7 @@ class BlogArticle(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
+    author_notes = models.TextField(null=True, blank=True)
 
 
     def __str__(self):
