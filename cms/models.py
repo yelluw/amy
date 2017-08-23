@@ -42,7 +42,6 @@ class BlogArticle(models.Model):
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     published = models.BooleanField(default=False)
-    category = models.ForeignKey(BlogArticleCategory)
     featured = models.BooleanField(default=False)
 
 
