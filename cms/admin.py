@@ -18,7 +18,7 @@ class BlogArticleCategoryAdmin(admin.ModelAdmin):
 
 
 class ContentPageAdmin(admin.ModelAdmin):
-    list_display = ("title", "published",  "author", "created")
+    list_display = ("title", "published",  "author", "slug", "created")
 
 
 admin.site.register(WorkInquiryContact, WorkInquiryContactAdmin)

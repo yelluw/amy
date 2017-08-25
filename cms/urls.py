@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^blog/(?P<article_slug>[\w-]+)/(?P<article_id>[\w-]+)/$', article, name="article"),
 
     # pages
-    url(r'^(?P<page_slug>[\w-]+)/(?P<page_id>[\w-]+)/$', page, name="page"),
+    url(r'^(?P<page_slug>[\w-]+)/$', page, name="page"),
 ]

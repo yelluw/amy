@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib import messages 
 from django.http import HttpResponseRedirect, Http404
 
+
 from .forms import WorkInquiryContactForm
 
 from .models import WorkInquiryContact, BlogArticle, ContentPage
@@ -98,7 +99,7 @@ def article(request, article_slug, article_id):
     """
     View pubished BlogArticle
     """
-    article = get_object_or_404(BlogArticle, id=article_id, published=True)
+    article = get_object_or_404(BlogArticle, slug=article_slug, id=article_id, published=True)
 
     return render(
             request,
@@ -110,11 +111,11 @@ def article(request, article_slug, article_id):
             )
 
 
-def page(request, page_slug, page_id):
+def page(request, page_slug):
     """
     View published ContentPage
     """
-    content_page = get_object_or_404(ContentPage, id=page_id, published=True)
+    content_page = get_object_or_404(ContentPage, slug=page_slug, published=True)
 
     return render(
             request,
