@@ -1,12 +1,12 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib import messages 
 from django.http import HttpResponseRedirect, Http404
 
 from .forms import WorkInquiryContactForm
 
-from .models import WorkInquiryContact, BlogArticle
+from .models import WorkInquiryContact, BlogArticle, ContentPage
 
 
 INDEX_LINK = reverse_lazy("index")
@@ -96,12 +96,9 @@ def featured_articles(request):
 
 def article(request, article_slug, article_id):
     """
-    View pubished BlogArticle from DB
+    View pubished BlogArticle
     """
-    try:
-        article = BlogArticle.objects.get(id=article_id, published=True)
-    except BlogArticle.DoesNotExist:
-        raise Http404("Article does not exists")
+    article = get_object_or_404(BlogArticle, id=article_id, published=True)
 
     return render(
             request,
@@ -109,5 +106,21 @@ def article(request, article_slug, article_id):
                 {
                     "article": article,
                     "header_link": BLOG_LINK
+                }
+            )
+
+
+def page(request, page_slug, page_id):
+    """
+    View published ContentPage
+    """
+    content_page = get_object_or_404(ContentPage, id=page_id, published=True)
+
+    return render(
+            request,
+            "page.html",
+                {
+                    "page": content_page,
+                    "header_link": INDEX_LINK
                 }
             )

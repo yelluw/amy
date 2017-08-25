@@ -49,3 +49,22 @@ class BlogArticle(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContentPage(models.Model):
+    """
+    Used for content that
+    does not go in the blog.
+    Example: about page
+    """
+    author = models.ForeignKey(User)
+    title = models.TextField()
+    slug = models.SlugField(max_length=60)
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    published = models.BooleanField(default=False)
+    author_notes = models.TextField(null=True, blank=True)
+
+
+    def __str__(self):
+        return self.title

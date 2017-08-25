@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}Page Not Found{% endblock title %}
+
+{% block twittercard %}
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@yelluwmedia"/>
+    <meta name="twitter:title" content="Page Not Found"/>
+    <meta name="twitter:description" content=" The page you are looking for was not found :( "/>
+    <meta name="twitter:image" content="{% static "img/brand/profile-icon.png" %}" />
+
+{% endblock twittercard %}
+
+{% block content %}
+
+{% include "header.html"%}
+
+
+<p>404 mate</p>
+
+
+{% include "footer.html" %}
+{% endblock content %}

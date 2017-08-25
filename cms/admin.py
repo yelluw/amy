@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WorkInquiryContact, BlogArticle, BlogArticleCategory
+from .models import WorkInquiryContact, BlogArticle, BlogArticleCategory, ContentPage
 
 
 class WorkInquiryContactAdmin(admin.ModelAdmin):
@@ -17,6 +17,11 @@ class BlogArticleCategoryAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
 
+class ContentPageAdmin(admin.ModelAdmin):
+    list_display = ("title", "published",  "author", "created")
+
+
 admin.site.register(WorkInquiryContact, WorkInquiryContactAdmin)
 admin.site.register(BlogArticle, BlogArticleAdmin)
 admin.site.register(BlogArticleCategory, BlogArticleCategoryAdmin)
+admin.site.register(ContentPage, ContentPageAdmin)
