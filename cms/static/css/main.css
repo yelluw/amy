@@ -257,6 +257,31 @@ body {
     font-weight: 700;
 }
 
+/* Pages */
+
+.page-header {
+    margin: 0;
+    background: #fff;
+    border: none;
+}
+
+.page-headline {
+    color: #000;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: 'Merriweather', serif;
+}
+
+.page-content {
+    margin: 0;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    text-align: justify;
+    background: #fff;
+    font-size: 1.2em;
+}
+
+
 
 /****** Media Queries ******/
 
