@@ -6,7 +6,14 @@
 
                 <div class="headline">
                     
-                    <p><a href="{{header_link}}"><img src="{% static "img/brand/logo.png" %}" class="logo"></a></p> 
+                    {% if header_link %}
+                        <p><a href="{{header_link}}"><img src="{% static "img/brand/logo.png" %}" class="logo"></a></p>
+                    
+                    {% else %}
+                        <p><a href="{% url "index" %}"><img src="{% static "img/brand/logo.png" %}" class="logo"></a></p>
+                    
+                    {% endif %}
+
                 
                 <!-- end headline -->
                 </div>
