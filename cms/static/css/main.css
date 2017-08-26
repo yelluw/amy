@@ -285,6 +285,16 @@ body {
     font-size: 1.0em;
 }
 
+/* 404 page */
+
+.page-404 {
+    background: #fff;
+}
+
+.page-404 .message-404 {
+    font-size: 5em;
+    text-align: center;
+}
 
 
 /****** Media Queries ******/
@@ -376,5 +386,10 @@ body {
         padding-left: 5px;
         padding-right: 5px;
         font-size: 1.2em;
+    }
+
+    /* 404 page */
+    .page-404 .message-404 {
+        font-size: 1.5em;
     }
 }
