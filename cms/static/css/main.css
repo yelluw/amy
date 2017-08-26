@@ -281,6 +281,10 @@ body {
     font-size: 1.2em;
 }
 
+.page-content p {
+    font-size: 1.0em;
+}
+
 
 
 /****** Media Queries ******/
