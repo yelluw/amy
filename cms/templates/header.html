@@ -1,16 +1,16 @@
 {% load static %}
 
-<div class="center-aligned-headline">
+<div class="nav-header">
     <div class="container">
             <div class="row">
 
-                <div class="headline">
+                <div class="float-left">
                     
                     {% if header_link %}
                         <p><a href="{{header_link}}"><img src="{% static "img/brand/logo.png" %}" class="logo"></a></p>
                     
                     {% else %}
-                        <p><a href="{% url "index" %}"><img src="{% static "img/brand/logo.png" %}" class="logo"></a></p>
+                        <p><a href="{% url "index" %}"><img src="{% static "img/brand/logo.png" %}" class="logo float-left"></a></p>
                     
                     {% endif %}
 

@@ -1,3 +1,9 @@
+ 
+
+/* #eef1f5 color of logo */
+/* color: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); */
+
+
 /*
 
    Agency Landing Page template styles.
@@ -21,17 +27,29 @@
 
 }
 
-.three-column-content {
-    background: #fff;
-    padding-bottom: 0px;
+.hero-subscription-form {
+    background: inherit;
+    color: #eef1f5;
 }
 
-.three-column-content .column-content {
-    text-align: justify;
+.hero-subscription-form .hero-headline {
+    font-size: 4.0em;
+}
+
+.hero-subscription-form .right-bottom .form-container {
+    border-radius: 0px;
+    padding-bottom: 20px;
+    color: #555;
+    /* background: #eef1f5; */
+    background: #fff;
+}
+
+.hero-subscription-form .right-bottom .form-container .form-control {
+    border-radius: 12px;
 }
 
 .two-column-footer {
-    background: #000;
+    background: inherit;
 }
 
 .two-column-footer .list-title {
@@ -49,8 +67,8 @@
 /****** Template custom styles ******/
 
 body {
-    font-family: 'Droid Sans', sans-serif;
-    background: #000;
+    font-family: 'Work Sans', sans-serif;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 }
 
 .underline {
@@ -59,12 +77,17 @@ body {
 
 .three-column-content-bottom {
     padding-top: 15px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
+}
+
+.nav-header {
+    padding-top: 20px;
+    padding-bottom: 12px;
 }
 
 .logo {
-    width: 35%;
-    height: 35%;
+    width: 10%;
+    height: 10%;
 }
 
 .services-icon-img {
@@ -93,7 +116,6 @@ body {
 
 
 .btn-form {
-    margin-top: 20px;
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fe1a00), color-stop(1, #ce0100) );
 	background:-moz-linear-gradient( center top, #fe1a00 5%, #ce0100 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fe1a00', endColorstr='#ce0100');
