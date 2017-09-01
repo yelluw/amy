@@ -47,6 +47,15 @@
 .hero-subscription-form .right-bottom .form-container .form-control {
 }
 
+.three-column-content {
+    background: #fff;
+    padding-bottom: 0px;
+}
+
+.three-column-content .column-content {
+    text-align: justify;
+}
+
 .two-column-footer {
     background: inherit;
 }
@@ -329,7 +338,37 @@ body {
         padding-top: 30px;
     }
 
+    .three-column-content {
+        padding-bottom: 0px;
+    }
 
+    .three-column-content .column-title {
+        font-size: 1.2em;
+    }
+
+    .three-column-content .column-content {
+        font-size: 1.1em;
+        text-align: center;
+    }
+
+    /* left column */
+    .three-column-content .left-column {
+        padding-top: 15px;
+    }
+
+    /* middle column */
+    .three-column-content .middle-column {
+        padding-top: 15px;
+    }
+
+    /*right column */
+    .three-column-content .right-column {
+        padding-top: 15px;
+    }
+
+    .two-column-footer .list-item {
+        font-size: .8em;    
+    }
 
     /* Template Custom styles */
     .nav-header {
