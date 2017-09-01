@@ -20,32 +20,31 @@
 
 /****** Override Bootparts styles ******/
 
-.center-aligned-headline {
-    padding-top: 30px;
-    padding-bottom: 22px;
-    background: #fff;
 
-}
 
 .hero-subscription-form {
     background: inherit;
-    color: #eef1f5;
+    color: #fff;
 }
 
 .hero-subscription-form .hero-headline {
-    font-size: 4.0em;
+    font-size: 2.5em;
+}
+
+.hero-subscription-form .right-bottom {
+    padding-top: 12px;
 }
 
 .hero-subscription-form .right-bottom .form-container {
     border-radius: 0px;
     padding-bottom: 20px;
-    color: #555;
+    color: #666;
     /* background: #eef1f5; */
     background: #fff;
+    box-shadow:  0px 7px 7px 0px #000;
 }
 
 .hero-subscription-form .right-bottom .form-container .form-control {
-    border-radius: 12px;
 }
 
 .two-column-footer {
@@ -326,44 +325,23 @@ body {
     
     /* Override Bootparts Defaults */
 
-    .three-column-content {
-        padding-bottom: 0px;
+    .hero-subscription-form {
+        padding-top: 30px;
     }
 
-    .three-column-content .column-title {
-        font-size: 1.2em;
-    }
 
-    .three-column-content .column-content {
-        font-size: 1.1em;
-        text-align: center;
-    }
-
-    /* left column */
-    .three-column-content .left-column {
-        padding-top: 15px;
-    }
-
-    /* middle column */
-    .three-column-content .middle-column {
-        padding-top: 15px;
-    }
-
-    /*right column */
-    .three-column-content .right-column {
-        padding-top: 15px;
-    }
-
-    .two-column-footer .list-item {
-        font-size: .8em;    
-    }
 
     /* Template Custom styles */
+    .nav-header {
+        padding-top: 20px;
+        padding-bottom: 0;
+    }
 
     .logo {
-        width: 65%;
-        height: 65%;
+        width: 60%;
+        height: 60%;
     }
+
 
     .three-column-content-bottom {
         padding-top: 0px;
