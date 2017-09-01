@@ -1,17 +1,13 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages 
 from django.http import HttpResponseRedirect, Http404
 
+from crm.forms import WorkInquiryContactForm
+from drip.forms import DripSubscriberForm
 
-from .forms import WorkInquiryContactForm
-
-from .models import WorkInquiryContact, BlogArticle, ContentPage
-
-
-INDEX_LINK = reverse_lazy("index")
-BLOG_LINK = reverse_lazy("featured_articles")
+from .models import BlogArticle, ContentPage
 
 
 def index(request):
@@ -34,14 +30,15 @@ def index(request):
                 message=form.cleaned_data["message"]
             )
 
-            return HttpResponseRedirect(reverse('thank_you'))
+            return HttpResponseRedirect(reverse_lazy('thank_you'))
 
     return render(
             request,
             "index.html",
                 {
+                    "drip_form": DripSubscriberForm({"funnel_entry_point":"index"}),
                     "form": WorkInquiryContactForm(),
-                    "header_link": INDEX_LINK
+                    "header_link": reverse_lazy("index")
                 }
             )
 
@@ -57,7 +54,7 @@ def thank_you(request):
                 request,
                 "thank-you.html", 
                 {
-                    "header_link": BLOG_LINK,
+                    "header_link": reverse_lazy("featured_articles"),
                     "featured_articles": articles.filter(featured=True, published=True),
                     "articles": articles.filter(featured=False, published=True).order_by('-id')[:3] #newest 3 articles
                 }
@@ -90,7 +87,7 @@ def featured_articles(request):
                 {
                     "featured_articles": articles_list.filter(featured=True, published=True),
                     "articles": articles,
-                    "header_link": INDEX_LINK
+                    "header_link": reverse_lazy("index")
                 }
             )
 
@@ -106,7 +103,7 @@ def article(request, article_slug, article_id):
             "article.html",
                 {
                     "article": article,
-                    "header_link": BLOG_LINK
+                    "header_link": reverse_lazy("featured_articles")
                 }
             )
 
@@ -122,6 +119,6 @@ def page(request, page_slug):
             "page.html",
                 {
                     "page": content_page,
-                    "header_link": INDEX_LINK
+                    "header_link": reverse_lazy("index")
                 }
             )

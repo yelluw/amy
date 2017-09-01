@@ -23,6 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cms.apps.CmsConfig',
+    'crm.apps.CrmConfig',
+    'drip.apps.DripConfig',
 ]
 
 MIDDLEWARE = [

@@ -18,5 +18,8 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^amy/', admin.site.urls),
-    url(r'', include('cms.urls')),
+    url(r'^drip/', include('drip.urls')),
+    url(r'^', include('crm.urls')),
+    url(r'^', include('cms.urls')),
+    
 ]

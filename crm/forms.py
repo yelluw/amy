@@ -3,7 +3,7 @@ from django import forms
 
 class WorkInquiryContactForm(forms.Form):
     """
-    Conact form for work inquiries
+    Contact form for work inquiries
     """
 
     CHOICES = (
