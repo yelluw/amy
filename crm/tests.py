@@ -10,15 +10,9 @@ class CrmIntegrationTest(TestCase):
     """
     Integration tests for views
     """
+    pass
 
 
-    def setUp(self):
-        self.client = Client()
-
-
-    def test_thank_you(self):
-        response = self.client.get(reverse_lazy("thank_you"))
-        self.assertEqual(response.status_code, 200)
 
 
 class WorkInquiryFormUnitTest(TestCase):
