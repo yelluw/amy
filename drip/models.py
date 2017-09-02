@@ -6,7 +6,7 @@ class DripSubscriber(models.Model):
     Defines a subscriber to all newsletters
     and or content sent by drip campaigns
     """
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     created = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
     funnel_entry_point = models.TextField()

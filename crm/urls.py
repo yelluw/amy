@@ -1,8 +1,8 @@
 from django.conf.urls import url
-from .views import thank_you 
+from .views import work_inquiry_contact 
 
 
 urlpatterns = [
     # funnel
-    url(r'^thank-you/$', thank_you, name="thank_you"),
+    url(r'^work-inquiry-contact/$', work_inquiry_contact, name="work_inquiry_contact"),
 ]

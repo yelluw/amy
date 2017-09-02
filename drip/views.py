@@ -13,17 +13,26 @@ def subscribe(request):
     for subscribers to
     enter drip
     """
-    if request.method == 'GET':
-        return HttpResponseRedirect(reverse_lazy("index"))
+    if request.method == 'POST':
 
-    form = DripSubscriberForm(request.POST)
+        form = DripSubscriberForm(request.POST)
 
-    if form.is_valid():
-        drip_subscriber = DripSubscriber.objects.create(
-            email=form.cleaned_data["email"],
-            funnel_entry_point=form.cleaned_data["funnel_entry_point"]
-        )
+        if form.is_valid():
 
-        return HttpResponseRedirect(reverse_lazy('subscriber_thank_you'))
+            drip_subscriber, created = DripSubscriber.objects.get_or_create(
+                email=form.cleaned_data["email"],
+                funnel_entry_point=form.cleaned_data["funnel_entry_point"]
+            )
+
+            if created:
+                messages.success(request, "subscription-success")
+
+                if request.session.get('redirect_to', False):
+                    return HttpResponseRedirect(request.session.get('redirect_to', reverse_lazy("index")))
+
+                return HttpResponseRedirect(reverse_lazy('index'))
+
+            messages.info(request, "subscription-exists")
+            return HttpResponseRedirect(reverse_lazy('index'))
 
     return HttpResponseRedirect(reverse_lazy("index"))

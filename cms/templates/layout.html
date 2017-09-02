@@ -28,6 +28,8 @@
     <!-- Custom styles for this template -->
     <link href="{% static "css/main.css" %}" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{% static "css/sweetalert.css" %}">
+
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
@@ -48,4 +50,32 @@
     <script src="{% static "js/bootstrap.js" %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+
+    <script src="{% static "js/sweetalert.min.js" %}"></script>
+
+      {% if messages %}
+
+        {% for message in messages %}
+          
+          {% if message.message == "subscription-success" %}
+              {% include "subscription-thank-you.html" %} 
+          {% endif %}
+
+          {% if message.message == "subscription-exists" %}
+              {% include "subscription-exists.html" %} 
+          {% endif %}
+
+          {% if message.message == "work-inquiry-contact-success" %}
+              {% include "work-inquiry-contact-thank-you.html" %} 
+          {% endif %}
+
+          {% if message.message == "work-inquiry-contact-error" %}
+              {% include "work-inquiry-contact-error.html" %} 
+          {% endif %}
+
+        {% endfor %}
+      
+        {% endif %}
+
+
   </body></html>
