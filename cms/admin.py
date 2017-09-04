@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WorkInquiryContact, BlogArticle, BlogArticleCategory, ContentPage
+from .models import BlogArticle, BlogArticleCategory, ContentPage
 
 
 class BlogArticleAdmin(admin.ModelAdmin):
