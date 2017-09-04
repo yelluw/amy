@@ -114,6 +114,72 @@ class BlogArticleUnitTest(TestCase):
         self.assertEqual(self.published_blog_article.author_notes, "This is a test note.")
 
 
+class ContentPageUnitTest(TestCase):
+    """
+    Unit tests for model ContentPage
+    """
+
+
+    def setUp(self):
+
+        self.user = User.objects.create(
+            username="test",
+            password="hello_world",
+            email="test@test.com",
+            first_name="hello",
+            last_name="world"
+        )
+
+        self.published_content_page = ContentPage.objects.create(
+            author=self.user,
+            title="Testing Testing 123",
+            slug="testing-testing-123",
+            content="This is a test!",
+            published=True,
+            author_notes="This is a test note."
+        )
+
+        self.unpublished_content_page = ContentPage.objects.create(
+            author=self.user,
+            title="Testing Testing 123",
+            slug="testing-testing-123",
+            content="This is a test!",
+            author_notes="This is a test note."
+        )
+
+
+    def test_author_field(self):
+        self.assertIsInstance(self.published_content_page.author, User)
+
+
+    def test_title_field(self):
+        self.assertEqual(self.published_content_page.title, "Testing Testing 123")
+
+
+    def test_slug_field(self):
+        self.assertEqual(self.published_content_page.slug, "testing-testing-123")
+
+
+    def test_content_field(self):
+        self.assertEqual(self.published_content_page.content, "This is a test!")
+
+
+    def test_author_notes_field(self):
+        self.assertEqual(self.published_content_page.author_notes, "This is a test note.")
+
+
+    def test_created_field(self):
+        self.assertIsInstance(self.published_content_page.created, datetime)
+
+
+    def test_published_field_set_to_true_is_true(self):
+        self.assertTrue(self.published_content_page.published)
+
+
+    def test_published_field_set_to_false_as_default(self):
+        self.assertFalse(self.unpublished_content_page.published)
+
+
 class CmsIntegrationTest(TestCase):
     """
     Integration tests for views
@@ -153,6 +219,24 @@ class CmsIntegrationTest(TestCase):
         )
 
 
+        self.published_content_page = ContentPage.objects.create(
+            author=self.user,
+            title="Testing Testing 123",
+            slug="testing-testing-123",
+            content="This is a test!",
+            published=True,
+            author_notes="This is a test note."
+        )
+
+        self.unpublished_content_page = ContentPage.objects.create(
+            author=self.user,
+            title="Testing Testing 456",
+            slug="testing-testing-456",
+            content="This is a test!",
+            author_notes="This is a test note."
+        )
+
+
     def test_index(self):
         response = self.client.get(reverse_lazy("index"))
         self.assertEqual(response.status_code, 200)
@@ -181,6 +265,28 @@ class CmsIntegrationTest(TestCase):
                 "article", kwargs={
                     "article_slug": self.unpublished_blog_article.slug,
                     "article_id": self.unpublished_blog_article.id
+                    }
+            )
+        )
+        self.assertEqual(response.status_code, 404)
+
+
+    def test_published_content_page(self):
+        response = self.client.get(
+            reverse_lazy(
+                "page", kwargs={
+                    "page_slug": self.published_content_page.slug
+                    }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_unpublished_content_page(self):
+        response = self.client.get(
+            reverse_lazy(
+                "page", kwargs={
+                    "page_slug": self.unpublished_content_page.slug
                     }
             )
         )
