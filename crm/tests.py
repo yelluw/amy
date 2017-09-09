@@ -14,7 +14,7 @@ class WorkInquiryContactUnitTest(TestCase):
     """
     WorkInquiryContact model unit tests
     """
-    pass
+
 
     def setUp(self):
         self.work_inquiry_contact = WorkInquiryContact.objects.create(
@@ -82,10 +82,30 @@ class WorkInquiryContactUnitTest(TestCase):
 class CrmIntegrationTest(TestCase):
     """
     Integration tests for views
-
-    TODO
     """
-    pass
+
+
+    def setUp(self):
+        self.client = Client()
+
+        self.data = {
+            "inquiry_type":"general",
+            "name":"mr test",
+            "email":"a@a.com",
+            "company":"test corp",
+            "phone":"1234567890",
+            "message":"hello test"
+            }
+
+
+    def test_work_inquiry_contact_redirects_to_featured_articles_on_success(self):
+        response = self.client.post(reverse_lazy("work_inquiry_contact"), data=self.data)
+        self.assertTrue(response.url == str(reverse_lazy("featured_articles")))
+
+
+    def test_work_inquiry_contact_redirects_to_index_on_failure(self):
+        response = self.client.post(reverse_lazy("work_inquiry_contact"), data={})
+        self.assertTrue(response.url == str(reverse_lazy("index")))
 
 
 class WorkInquiryFormUnitTest(TestCase):
