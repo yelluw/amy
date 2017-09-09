@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, Http404
 
 from crm.forms import WorkInquiryContactForm
 from drip.forms import DripSubscriberForm
+from drip.tracking import tracking_string
 
 from .models import BlogArticle, ContentPage
 
@@ -17,7 +18,7 @@ def index(request):
     """
     uri = reverse_lazy("index")
     location = "hero top under header"
-    funnel_entry_point = f"URI: {uri}, Location: {location}"
+    funnel_entry_point = tracking_string(uri, location)
 
     return render(
             request,
@@ -38,7 +39,7 @@ def featured_articles(request):
     """
     uri = reverse_lazy("featured_articles")
     location = "hero top under header"
-    funnel_entry_point = f"URI: {uri}, Location: {location}"
+    funnel_entry_point = tracking_string(uri, location)
     
     request.session['redirect_to'] = str(uri)
 
@@ -75,7 +76,7 @@ def article(request, article_slug, article_id):
     """
     uri = reverse_lazy("article", kwargs={"article_slug": article_slug, "article_id": article_id})
     location = "hero top under header"
-    funnel_entry_point = f"URI: {uri}, Location: {location}"
+    funnel_entry_point = tracking_string(uri, location)
 
     # redirect back to article again
     request.session['redirect_to'] = str(uri)

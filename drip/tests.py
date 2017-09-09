@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse_lazy
 
 from drip.models import DripSubscriber
 from drip.forms import DripSubscriberForm
+from drip.tracking import tracking_string
 
 #command: python3 manage.py test --verbosity=2
 
@@ -85,7 +86,7 @@ class DripIntegrationTest(TestCase):
         self.assertTrue(response.url == (reverse_lazy("featured_articles")))
 
 
-class DripSubscriberFormUnittest(TestCase):
+class DripSubscriberFormUnitTest(TestCase):
     """
     Test the actual DripSubscriberForm
     and not the view
@@ -99,3 +100,20 @@ class DripSubscriberFormUnittest(TestCase):
         }
         form = DripSubscriberForm(data=data)
         self.assertTrue(form.is_valid())
+
+
+class DripTrackingUnitTest(TestCase):
+    """
+    Test drip.tracking
+    utilities
+    """
+
+
+    def test_tracking_string_is_formatted_correctly(self):
+        self.assertEqual(
+            tracking_string(
+                uri=reverse_lazy("index"),
+                location="test"
+            ),
+            "URI /, Location: test"
+        )
