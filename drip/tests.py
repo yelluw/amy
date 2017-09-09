@@ -54,9 +54,35 @@ class DripSubscriberUnitTest(TestCase):
 class DripIntegrationTest(TestCase):
     """
     Integrations tests for drip.views
-    TODO
     """
-    pass
+
+
+    def setUp(self):
+        self.client = Client()
+
+        self.data = {
+            "email":"a@a.com",
+            "funnel_entry_point": "URI: test, location: test"
+        }
+
+
+    def test_subscribe_view_does_302_redirect(self):
+        response = self.client.post(reverse_lazy("subscribe"), data=self.data)
+        self.assertTrue(response.status_code == 302)
+
+
+    def test_subscribe_view_redirects_to_index_view(self):
+        response = self.client.post(reverse_lazy("subscribe"), data=self.data)
+        self.assertTrue(response.url == "/")
+
+
+    def test_subscribe_view_redirects_when_session_is_set(self):
+        session = self.client.session
+        session["redirect_to"] = str(reverse_lazy("featured_articles"))
+        session.save()
+
+        response = self.client.post(reverse_lazy("subscribe"), data=self.data)
+        self.assertTrue(response.url == (reverse_lazy("featured_articles")))
 
 
 class DripSubscriberFormUnittest(TestCase):
