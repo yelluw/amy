@@ -11,6 +11,31 @@ from drip.tracking import tracking_string
 #command: python3 manage.py test --verbosity=2
 
 
+class DripSubscriberListUnitTest(TestCase):
+    """
+    DripSubscriberList model unit test
+    """
+
+
+    def setUp(self):
+        
+        self.drip_subscriber_list = DripSubscriberList.objects.create(
+            name="test"
+            )
+
+
+    def test_name_field_type(self):
+        self.assertIsInstance(self.drip_subscriber_list.name, str)
+
+
+    def test_name_field_value(self):
+        self.assertTrue(self.drip_subscriber_list.name == "test")
+
+
+    def test_created_field(self):
+        self.assertIsInstance(self.drip_subscriber_list.created, datetime)
+
+
 class DripSubscriberUnitTest(TestCase):
     """
     DripsSubscriber model unit test
