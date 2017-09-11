@@ -74,8 +74,16 @@ class DripIntegrationTest(TestCase):
 
     def test_subscribe_view_redirects_to_index_view(self):
         response = self.client.post(reverse_lazy("subscribe"), data=self.data)
-        self.assertTrue(response.url == "/")
+        self.assertTrue(response.url == str(reverse_lazy("index")))
 
+
+    def test_subscribe_view_does_302_redirect_to_index_view_when_email_already_exists(self):
+        response = self.client.post(reverse_lazy("subscribe"), data=self.data)
+        self.assertTrue(response.status_code == 302)
+        
+        response = self.client.post(reverse_lazy("subscribe"), data=self.data)
+        self.assertTrue(response.status_code == 302)
+        
 
     def test_subscribe_view_redirects_when_session_is_set(self):
         session = self.client.session
