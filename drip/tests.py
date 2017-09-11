@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.test import Client
 from django.core.urlresolvers import reverse_lazy
 
-from drip.models import DripSubscriber
+from drip.models import DripSubscriber, DripSubscriberList
 from drip.forms import DripSubscriberForm
 from drip.tracking import tracking_string
 
@@ -18,10 +18,12 @@ class DripSubscriberUnitTest(TestCase):
 
 
     def setUp(self):
+
         self.drip_subscriber = DripSubscriber.objects.create(
             email="a@a.com",
-            funnel_entry_point="URI: test, location: test"
+            funnel_entry_point="URI: test, location: test",
         )
+
 
 
     def test_email_field_type(self):
@@ -50,6 +52,10 @@ class DripSubscriberUnitTest(TestCase):
 
     def test_created_field(self):
         self.assertIsInstance(self.drip_subscriber.created, datetime)
+
+
+    def test_drip_subscriber_list_field_value(self):
+        self.assertTrue(self.drip_subscriber.drip_subscriber_lists.first() == None)
 
 
 class DripIntegrationTest(TestCase):
