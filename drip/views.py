@@ -20,7 +20,7 @@ def subscribe(request):
         if form.is_valid():
 
             drip_subscriber, created = DripSubscriber.objects.get_or_create(
-                email=form.cleaned_data["email"],
+                email=form.cleaned_data["email"].lower(),
                 funnel_entry_point=form.cleaned_data["funnel_entry_point"]
             )
 

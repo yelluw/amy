@@ -23,7 +23,7 @@ def work_inquiry_contact(request):
             work_inquiry_contact = WorkInquiryContact.objects.create(
                 inquiry_type=form.cleaned_data["inquiry_type"],
                 name=form.cleaned_data["name"],
-                email=form.cleaned_data["email"],
+                email=form.cleaned_data["email"].lower(),
                 company=form.cleaned_data["company"],
                 phone=form.cleaned_data["phone"],
                 message=form.cleaned_data["message"]
