@@ -40,5 +40,5 @@ class DripMessage(models.Model):
     title = models.TextField()
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    published = models.TextField(default=False)
+    published = models.BooleanField(default=False)
     author = models.ForeignKey(User)
