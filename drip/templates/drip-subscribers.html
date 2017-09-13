@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}Drip Subscribers{% endblock title %}
+
+{% block content %}
+
+{% include "header.html" %}
+
+{% include "drip-navigation.html" %}
+
+<div class="drip-subscribers">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        
+                        <thead>
+                            <tr>
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Date Created
+                                </th>
+
+                                <th>
+                                    Active
+                                </th>
+
+                                <th>
+                                    Funnel Entry Point
+                                </th>
+
+                                <th>
+                                    Lists
+                                </th>
+                            </tr>
+                         </thead>
+                        
+
+                        {% for subscriber in subscribers %}
+                            <tr>
+                                <td>
+                                    {{subscriber.email}}
+                                </td>
+
+                                <td>
+                                    {{subscriber.created}}
+                                </td>
+
+                                <td>
+                                    {{subscriber.active}}
+                                </td>
+
+                                <td>
+                                    {{subscriber.funnel_entry_point}}
+                                </td>
+
+                                <td>
+                                    {{subscriber.drip_subscriber_lists.all|join:", " }}
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>                
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+{% endblock content %}

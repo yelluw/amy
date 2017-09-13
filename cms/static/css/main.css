@@ -326,6 +326,34 @@ body {
     text-align: center;
 }
 
+/* Drip Styles */
+
+/* Navigation */
+
+.drip-navigation {
+    background: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.drip-navigation .drip-nav-link {
+    font-size: 1.3em;
+}
+
+/* Dashboard */
+
+.drip-dashboard {
+    background: #fff;
+    height: 300px;
+    padding-top: 20px;
+}
+
+/* Subscribers */
+
+.drip-subscribers {
+    background: #fff;
+    padding-top: 20px;
+}
 
 /****** Media Queries ******/
 
