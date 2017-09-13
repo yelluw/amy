@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'cms.apps.CmsConfig',
     'crm.apps.CrmConfig',
     'drip.apps.DripConfig',
+    'messaging.apps.MessagingConfig',
 ]
 
 MIDDLEWARE = [
