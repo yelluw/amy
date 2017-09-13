@@ -153,6 +153,14 @@ class DripIntegrationTest(TestCase):
     def setUp(self):
         self.client = Client()
 
+        self.user = User.objects.create_user(
+            username="test",
+            password="hello_world",
+            email="test@test.com",
+            first_name="hello",
+            last_name="world"
+        )
+
         self.data = {
             "email":"a@a.com",
             "funnel_entry_point": "URI: test, location: test"
@@ -176,6 +184,17 @@ class DripIntegrationTest(TestCase):
 
         response = self.client.post(reverse_lazy("subscribe"), data=self.data)
         self.assertTrue(response.url == (reverse_lazy("featured_articles")))
+
+
+    def test_drip_dashboard_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("drip_dashboard"))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_dashboard_view_returns_200_with_logged_in_user(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_dashboard"))
+        self.assertEqual(response.status_code, 200)
 
 
 class DripSubscriberFormUnitTest(TestCase):

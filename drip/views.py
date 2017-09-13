@@ -1,6 +1,8 @@
 from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages 
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 
 from .forms import DripSubscriberForm
 
@@ -36,3 +38,11 @@ def subscribe(request):
             return HttpResponseRedirect(reverse_lazy('index'))
 
     return HttpResponseRedirect(reverse_lazy("index"))
+
+
+@login_required
+def drip_dashboard(request):
+    """
+    main area of drip functionality
+    """
+    return render(request, "drip-dashboard.html")
