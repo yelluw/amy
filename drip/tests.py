@@ -3,8 +3,10 @@ from datetime import datetime
 from django.test import TestCase
 from django.test import Client
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.models import User
 
-from drip.models import DripSubscriber, DripSubscriberList
+
+from drip.models import DripSubscriber, DripSubscriberList, DripMessage
 from drip.forms import DripSubscriberForm
 from drip.tracking import tracking_string
 
@@ -18,7 +20,7 @@ class DripSubscriberListUnitTest(TestCase):
 
 
     def setUp(self):
-        
+    
         self.drip_subscriber_list = DripSubscriberList.objects.create(
             name="test"
             )
@@ -81,6 +83,65 @@ class DripSubscriberUnitTest(TestCase):
 
     def test_drip_subscriber_list_field_value(self):
         self.assertTrue(self.drip_subscriber.drip_subscriber_lists.first() == None)
+
+
+class DripMessageUnitTest(TestCase):
+    """
+    DripMessage model unit tests
+    """
+
+
+    def setUp(self):
+
+        self.user = User.objects.create(
+            username="test",
+            password="hello_world",
+            email="test@test.com",
+            first_name="hello",
+            last_name="world"
+        )
+
+        self.drip_message = DripMessage.objects.create(
+            title="test message",
+            body="test body",
+            author=self.user
+        )
+
+
+    def test_title_field_value_is_string_type(self):
+        self.assertIsInstance(self.drip_message.title, str)
+
+
+    def test_title_field_value(self):
+        self.assertEqual(self.drip_message.title, "test message")
+
+
+    def test_body_field_value_is_string_type(self):
+        self.assertIsInstance(self.drip_message.body, str)
+
+
+    def test_body_field_value(self):
+        self.assertEqual(self.drip_message.body, "test body")
+
+
+    def test_author_field_is_user_instance(self):
+        self.assertIsInstance(self.drip_message.author, User)
+
+
+    def test_author_field_user_email_is_the_same(self):
+        self.assertEqual(self.drip_message.author.email, self.user.email)
+
+
+    def test_created_field_is_datetime_instance(self):
+        self.assertIsInstance(self.drip_message.created, datetime)
+
+
+    def test_published_field_is_bool_type(self):
+        self.assertIsInstance(self.drip_message.published, bool)
+
+
+    def test_published_field_value_default_is_false(self):
+        self.assertTrue(self.drip_message.published == False)
 
 
 class DripIntegrationTest(TestCase):
