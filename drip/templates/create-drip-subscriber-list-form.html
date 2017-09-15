@@ -1,0 +1,20 @@
+<div class="drip-subscribers">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="form-container">
+                                <form action="{% url "create_drip_subscriber_list" %}" method="POST">{% csrf_token %}
+                                    <p class="form-title" id="new-list">Create a new list</p>
+                                    <div class="form-group">
+                                        
+                                        <label for="{{create_form.name.id_for_label}}">Name</label>
+                                        {{ create_form.name.errors }}
+                                        {{ create_form.name }}
+                                        </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>

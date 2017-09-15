@@ -5,7 +5,7 @@ from django.core.exceptions import MultipleObjectsReturned
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import DripSubscriberForm
+from .forms import DripSubscriberForm, CreateDripSubscriberListForm, UpdateDripSubscriberListForm
 
 from .models import DripSubscriber, DripSubscriberList, DripMessage
 
@@ -95,8 +95,27 @@ def drip_subscriber_lists(request):
     return render(
         request,
         "drip-subscriber-lists.html",
-        {"subscriber_lists": DripSubscriberList.objects.all()}
+        {
+            "subscriber_lists": DripSubscriberList.objects.all(),
+            "create_form": CreateDripSubscriberListForm()
+        }
     )
+
+
+@login_required
+def create_drip_subscriber_list(request):
+    """
+    view to create new drip subscriber lists
+    """
+    if request.method == 'POST':
+        form = CreateDripSubscriberListForm(request.POST)
+
+        if form.is_valid():
+            drip_subscriber_list = DripSubscriberList.objects.create(
+                name=form.cleaned_data["name"]
+            )
+
+    return HttpResponseRedirect(reverse_lazy("drip_subscriber_lists"))
 
 
 @login_required

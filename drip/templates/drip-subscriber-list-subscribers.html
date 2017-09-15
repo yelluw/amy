@@ -15,6 +15,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="table-responsive">
+                {% if drip_subscriber_list_subscribers %}
                     <table class="table table-bordered">
                         
                         <thead>
@@ -40,41 +41,41 @@
                                 </th>
                             </tr>
                          </thead>
-                        
+                            {% for subscriber in drip_subscriber_list_subscribers %}
+                                <tr>
+                                    <td>
+                                        {{subscriber.email}}
+                                    </td>
 
-                        {% for subscriber in drip_subscriber_list_subscribers %}
-                            <tr>
-                                <td>
-                                    {{subscriber.email}}
-                                </td>
+                                    <td>
+                                        {{subscriber.created}}
+                                    </td>
 
-                                <td>
-                                    {{subscriber.created}}
-                                </td>
+                                    <td>
+                                        {{subscriber.active}} 
+                                            <a href="{% url "drip_subscriber_status" subscriber.id %}" class="btn btn-xs btn-subscriber-status
+                                            {% if subscriber.active %}
+                                            btn-danger"> Deactivate
+                                            {% else %}
+                                            btn-success"> Activate
+                                            {% endif %}
+                                        </a>
+                                    </td>
 
-                                <td>
-                                    {{subscriber.active}} 
-                                        <a href="{% url "drip_subscriber_status" subscriber.id %}" class="btn btn-xs btn-subscriber-status
-                                        {% if subscriber.active %}
-                                         btn-danger"> Deactivate
-                                        {% else %}
-                                        btn-success"> Activate
-                                        {% endif %}
-                                    </a>
-                                </td>
+                                    <td>
+                                        {{subscriber.funnel_entry_point}}
+                                    </td>
 
-                                <td>
-                                    {{subscriber.funnel_entry_point}}
-                                </td>
+                                    <td>
+                                        {{subscriber.drip_subscriber_lists.all|join:", " }}
+                                    </td>
 
-                                <td>
-                                    {{subscriber.drip_subscriber_lists.all|join:", " }}
-                                </td>
-
-                            </tr>
-                        {% endfor %}
+                                </tr>
+                            {% endfor %}
                     </table>
-
+                {% else %}
+                <p>List has no subscribers.</p>
+                {% endif %}
                 </div>                
 
             </div>
