@@ -171,6 +171,10 @@ class DripIntegrationTest(TestCase):
             funnel_entry_point="unit test"
         )
 
+        self.drip_subscriber_list = DripSubscriberList.objects.create(
+            name="test list"
+        )
+
 
     def test_subscribe_view_does_302_redirect(self):
         response = self.client.post(reverse_lazy("subscribe"), data=self.data)
@@ -263,6 +267,20 @@ class DripIntegrationTest(TestCase):
         logged_in = self.client.login(username="test", password="hello_world")
         response = self.client.get(reverse_lazy("drip_subscriber_lists"))
         self.assertEqual(response.status_code, 200)
+
+
+    def test_drip_subscriber_list_subscribers_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("drip_subscriber_list_subscribers", kwargs={"drip_subscriber_list_id": self.drip_subscriber_list.id}))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_subscriber_list_subscribers_view_returns_200_status_code_with_logged_in_user(self):        
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_subscriber_list_subscribers", kwargs={"drip_subscriber_list_id": self.drip_subscriber_list.id}))
+        self.assertEqual(response.status_code, 200)
+
+
+
 
 
 class DripSubscriberFormUnitTest(TestCase):
