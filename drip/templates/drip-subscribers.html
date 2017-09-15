@@ -53,7 +53,14 @@
                                 </td>
 
                                 <td>
-                                    {{subscriber.active}}
+                                    {{subscriber.active}} 
+                                        <a href="{% url "drip_subscriber_status" subscriber.id %}" class="btn btn-xs btn-subscriber-status
+                                        {% if subscriber.active %}
+                                         btn-danger"> Deactivate
+                                        {% else %}
+                                        btn-success"> Activate
+                                        {% endif %}
+                                    </a>
                                 </td>
 
                                 <td>

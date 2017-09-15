@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import DripSubscriberForm
 
@@ -50,8 +50,26 @@ def drip_dashboard(request):
 
 @login_required
 def drip_subscribers(request):
+    """
+    Dashboard for subscriber data and admin 
+    """
     return render(
         request,
         "drip-subscribers.html",
         {"subscribers": DripSubscriber.objects.all()}
         )
+
+
+@login_required
+def drip_subscriber_status(request, user_id):
+    """
+    Update the status of a drip subscriber
+    to active / inactive
+    """
+    drip_subscriber = get_object_or_404(DripSubscriber, id=user_id)
+
+    drip_subscriber.active = False if drip_subscriber.active == True else True
+
+    drip_subscriber.save()
+
+    return HttpResponseRedirect(reverse_lazy("drip_subscribers"))

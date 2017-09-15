@@ -353,6 +353,11 @@ body {
 .drip-subscribers {
     background: #fff;
     padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.drip-subscribers .btn-subscriber-status {
+    margin-left: 15px;
 }
 
 /****** Media Queries ******/
