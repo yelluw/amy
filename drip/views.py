@@ -97,7 +97,8 @@ def drip_subscriber_lists(request):
         "drip-subscriber-lists.html",
         {
             "subscriber_lists": DripSubscriberList.objects.all(),
-            "create_form": CreateDripSubscriberListForm()
+            "create_form": CreateDripSubscriberListForm(),
+            "update_form": UpdateDripSubscriberListForm()
         }
     )
 
@@ -116,6 +117,29 @@ def create_drip_subscriber_list(request):
             )
 
     return HttpResponseRedirect(reverse_lazy("drip_subscriber_lists"))
+
+
+@login_required
+def update_drip_subscriber_list(request):
+    """
+    Update an existing drip subscriber list
+    """
+
+    if request.method == 'POST':
+        form = UpdateDripSubscriberListForm(request.POST)
+
+        if form.is_valid():
+
+            drip_subscriber_list = get_object_or_404(
+                DripSubscriberList,
+                id=form.cleaned_data["drip_subscriber_list_id"]
+            )
+
+            drip_subscriber_list.name = form.cleaned_data["name"]
+            drip_subscriber_list.save()
+
+    return HttpResponseRedirect(reverse_lazy("drip_subscriber_lists"))
+
 
 
 @login_required

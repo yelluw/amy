@@ -179,6 +179,11 @@ class DripIntegrationTest(TestCase):
             "name":"test"
         }
 
+        self.update_drip_subscriber_list_form_data = {
+            "name": "updated name",
+            "id": self.drip_subscriber_list.id
+        }
+
 
     def test_subscribe_view_does_302_redirect(self):
         response = self.client.post(reverse_lazy("subscribe"), data=self.data)
@@ -298,6 +303,23 @@ class DripIntegrationTest(TestCase):
     def test_create_drip_subscriber_list_redirects_to_index_on_failure(self):
         logged_in = self.client.login(username="test", password="hello_world")
         response = self.client.post(reverse_lazy("create_drip_subscriber_list"), data={})
+        self.assertTrue(response.url == str(reverse_lazy("drip_subscriber_lists")))
+
+
+    def test_update_drip_subscriber_list_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("update_drip_subscriber_list"))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_update_drip_subscriber_list_redirects_to_drip_subscriber_lists_on_success(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.post(reverse_lazy("update_drip_subscriber_list"), data=self.update_drip_subscriber_list_form_data)
+        self.assertTrue(response.url == str(reverse_lazy("drip_subscriber_lists")))
+
+
+    def test_update_drip_subscriber_list_redirects_to_index_on_failure(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.post(reverse_lazy("update_drip_subscriber_list"), data={})
         self.assertTrue(response.url == str(reverse_lazy("drip_subscriber_lists")))
 
 

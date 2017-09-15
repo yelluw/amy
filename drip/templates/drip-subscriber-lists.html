@@ -30,6 +30,10 @@
                                 <th>
                                     Details
                                 </th>
+
+                                <th>
+                                    Update List
+                                </th>
                             </tr>
                          </thead>
                         
@@ -37,7 +41,7 @@
                         {% for subscriber_list in subscriber_lists %}
                             <tr>
                                 <td>
-                                    {{subscriber_list.name}}
+                                    <strong>{{subscriber_list.name}}</strong>
                                 </td>
 
                                 <td>
@@ -50,6 +54,9 @@
                                     </a>
                                 </td>
 
+                                <td>
+                                    {% include "update-drip-subscriber-list-form.html" %}
+                                </td>
 
                             </tr>
                         {% endfor %}
@@ -59,9 +66,10 @@
 
             </div>
         </div>
-        
+        <hr>
     </div>
 </div>
+
 
 {% include "create-drip-subscriber-list-form.html" %}
 {% endblock content %}

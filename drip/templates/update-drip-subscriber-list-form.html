@@ -1,0 +1,14 @@
+{# Note: Requires DripSubscriberList object to be passed #}
+
+<div class="form-container">
+        <form action="{% url "update_drip_subscriber_list" %}" method="POST">{% csrf_token %}
+            <div class="form-group">
+                <label for="{{update_form.name.id_for_label}}">Name</label>
+                {{ update_form.name.errors }}
+                {{ update_form.name }}
+                </div>
+
+                <input type="hidden" name="drip_subscriber_list_id" id="id_drip_subscriber_list_id" value={{ subscriber_list.id }} />
+            <button type="submit" class="btn btn-inverse">Update</button>
+        </form>
+</div>
