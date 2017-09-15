@@ -166,6 +166,11 @@ class DripIntegrationTest(TestCase):
             "funnel_entry_point": "URI: test, location: test"
         }
 
+        self.drip_subscriber = DripSubscriber.objects.create(
+            email="test@test.com",
+            funnel_entry_point="unit test"
+        )
+
 
     def test_subscribe_view_does_302_redirect(self):
         response = self.client.post(reverse_lazy("subscribe"), data=self.data)
@@ -206,6 +211,40 @@ class DripIntegrationTest(TestCase):
         logged_in = self.client.login(username="test", password="hello_world")
         response = self.client.get(reverse_lazy("drip_subscribers"))
         self.assertEqual(response.status_code, 200)
+
+
+    def test_drip_subscriber_status_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": 99}))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_subscriber_status_view_response_status_code_is_404_when_user_id_not_found_in_db(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": 99}))
+        self.assertEqual(response.status_code, 404)
+
+
+    def test_drip_subscriber_status_view_updates_user_subscription_status(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": self.drip_subscriber.id}))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_subscriber_status_view_updates_drip_subscriber_active_field(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": self.drip_subscriber.id}))
+        self.drip_subscriber = DripSubscriber.objects.get(email="test@test.com")
+        
+        self.assertFalse(self.drip_subscriber.active)
+
+        # request above should have set active field to False
+        # set it now to True
+
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": self.drip_subscriber.id}))
+        self.drip_subscriber = DripSubscriber.objects.get(email="test@test.com")
+        
+        self.assertTrue(self.drip_subscriber.active)        
+
 
 
 class DripSubscriberFormUnitTest(TestCase):
