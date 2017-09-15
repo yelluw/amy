@@ -41,7 +41,8 @@
                         {% for subscriber_list in subscriber_lists %}
                             <tr>
                                 <td>
-                                    <strong>{{subscriber_list.name}}</strong>
+                                    <strong>{{subscriber_list.name}}</strong> 
+                                    <a href="{% url "delete_drip_subscriber_list" subscriber_list.id %}" class="btn btn-xs btn-subscriber-status btn-danger"> Delete</a>
                                 </td>
 
                                 <td>

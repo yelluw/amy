@@ -21,6 +21,8 @@ urlpatterns = [
 
     url(r'^subscriber-list/update/$', update_drip_subscriber_list, name="update_drip_subscriber_list"),
 
+    url(r'^subscriber-list/delete/(?P<drip_subscriber_list_id>\d+)/$', delete_drip_subscriber_list, name="delete_drip_subscriber_list"),
+
 
     url(r'^subscriber/status/(?P<user_id>\d+)/$', drip_subscriber_status, name="drip_subscriber_status"),
 

@@ -141,6 +141,17 @@ def update_drip_subscriber_list(request):
     return HttpResponseRedirect(reverse_lazy("drip_subscriber_lists"))
 
 
+@login_required
+def delete_drip_subscriber_list(request, drip_subscriber_list_id):
+    """
+    delete a drip subscriber list by id
+    """
+    drip_subscriber_list = get_object_or_404(DripSubscriberList, id=drip_subscriber_list_id)
+
+    drip_subscriber_list.delete()
+
+    return HttpResponseRedirect(reverse_lazy("drip_subscriber_lists"))
+
 
 @login_required
 def drip_subscriber_list_subscribers(request, drip_subscriber_list_id):
