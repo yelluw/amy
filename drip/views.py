@@ -69,7 +69,7 @@ def drip_subscribers(request):
         request,
         "drip-subscribers.html",
         {"subscribers": DripSubscriber.objects.all()}
-        )
+    )
 
 
 @login_required
@@ -85,3 +85,15 @@ def drip_subscriber_status(request, user_id):
     drip_subscriber.save()
 
     return HttpResponseRedirect(reverse_lazy("drip_subscribers"))
+
+
+@login_required
+def drip_subscriber_lists(request):
+    """
+    view all subscriber lists
+    """
+    return render(
+        request,
+        "drip-subscriber-lists.html",
+        {"subscriber_lists": DripSubscriberList.objects.all()}
+    )
