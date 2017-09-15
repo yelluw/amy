@@ -3,12 +3,39 @@ from datetime import datetime
 from django.test import TestCase
 from django.test import Client
 from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.models import User
 
-from drip.models import DripSubscriber
+
+from drip.models import DripSubscriber, DripSubscriberList, DripMessage
 from drip.forms import DripSubscriberForm
 from drip.tracking import tracking_string
 
 #command: python3 manage.py test --verbosity=2
+
+
+class DripSubscriberListUnitTest(TestCase):
+    """
+    DripSubscriberList model unit test
+    """
+
+
+    def setUp(self):
+    
+        self.drip_subscriber_list = DripSubscriberList.objects.create(
+            name="test"
+            )
+
+
+    def test_name_field_type(self):
+        self.assertIsInstance(self.drip_subscriber_list.name, str)
+
+
+    def test_name_field_value(self):
+        self.assertTrue(self.drip_subscriber_list.name == "test")
+
+
+    def test_created_field(self):
+        self.assertIsInstance(self.drip_subscriber_list.created, datetime)
 
 
 class DripSubscriberUnitTest(TestCase):
@@ -18,10 +45,12 @@ class DripSubscriberUnitTest(TestCase):
 
 
     def setUp(self):
+
         self.drip_subscriber = DripSubscriber.objects.create(
             email="a@a.com",
-            funnel_entry_point="URI: test, location: test"
+            funnel_entry_point="URI: test, location: test",
         )
+
 
 
     def test_email_field_type(self):
@@ -52,6 +81,69 @@ class DripSubscriberUnitTest(TestCase):
         self.assertIsInstance(self.drip_subscriber.created, datetime)
 
 
+    def test_drip_subscriber_list_field_value(self):
+        self.assertTrue(self.drip_subscriber.drip_subscriber_lists.first() == None)
+
+
+class DripMessageUnitTest(TestCase):
+    """
+    DripMessage model unit tests
+    """
+
+
+    def setUp(self):
+
+        self.user = User.objects.create(
+            username="test",
+            password="hello_world",
+            email="test@test.com",
+            first_name="hello",
+            last_name="world"
+        )
+
+        self.drip_message = DripMessage.objects.create(
+            title="test message",
+            body="test body",
+            author=self.user
+        )
+
+
+    def test_title_field_value_is_string_type(self):
+        self.assertIsInstance(self.drip_message.title, str)
+
+
+    def test_title_field_value(self):
+        self.assertEqual(self.drip_message.title, "test message")
+
+
+    def test_body_field_value_is_string_type(self):
+        self.assertIsInstance(self.drip_message.body, str)
+
+
+    def test_body_field_value(self):
+        self.assertEqual(self.drip_message.body, "test body")
+
+
+    def test_author_field_is_user_instance(self):
+        self.assertIsInstance(self.drip_message.author, User)
+
+
+    def test_author_field_user_email_is_the_same(self):
+        self.assertEqual(self.drip_message.author.email, self.user.email)
+
+
+    def test_created_field_is_datetime_instance(self):
+        self.assertIsInstance(self.drip_message.created, datetime)
+
+
+    def test_published_field_is_bool_type(self):
+        self.assertIsInstance(self.drip_message.published, bool)
+
+
+    def test_published_field_value_default_is_false(self):
+        self.assertTrue(self.drip_message.published == False)
+
+
 class DripIntegrationTest(TestCase):
     """
     Integrations tests for drip.views
@@ -61,10 +153,23 @@ class DripIntegrationTest(TestCase):
     def setUp(self):
         self.client = Client()
 
+        self.user = User.objects.create_user(
+            username="test",
+            password="hello_world",
+            email="test@test.com",
+            first_name="hello",
+            last_name="world"
+        )
+
         self.data = {
             "email":"a@a.com",
             "funnel_entry_point": "URI: test, location: test"
         }
+
+        self.drip_subscriber = DripSubscriber.objects.create(
+            email="test@test.com",
+            funnel_entry_point="unit test"
+        )
 
 
     def test_subscribe_view_does_302_redirect(self):
@@ -92,6 +197,62 @@ class DripIntegrationTest(TestCase):
 
         response = self.client.post(reverse_lazy("subscribe"), data=self.data)
         self.assertTrue(response.url == (reverse_lazy("featured_articles")))
+
+
+    def test_drip_dashboard_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("drip_dashboard"))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_dashboard_view_returns_200_with_logged_in_user(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_dashboard"))
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_drip_subscribers_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("drip_subscribers"))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_subscribers_view_returns_200_with_logged_in_user(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_subscribers"))
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_drip_subscriber_status_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": 99}))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_subscriber_status_view_response_status_code_is_404_when_user_id_not_found_in_db(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": 99}))
+        self.assertEqual(response.status_code, 404)
+
+
+    def test_drip_subscriber_status_view_updates_user_subscription_status(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": self.drip_subscriber.id}))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_subscriber_status_view_updates_drip_subscriber_active_field(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": self.drip_subscriber.id}))
+        self.drip_subscriber = DripSubscriber.objects.get(email="test@test.com")
+        
+        self.assertFalse(self.drip_subscriber.active)
+
+        # request above should have set active field to False
+        # set it now to True
+
+        response = self.client.get(reverse_lazy("drip_subscriber_status", kwargs={"user_id": self.drip_subscriber.id}))
+        self.drip_subscriber = DripSubscriber.objects.get(email="test@test.com")
+        
+        self.assertTrue(self.drip_subscriber.active)        
+
 
 
 class DripSubscriberFormUnitTest(TestCase):

@@ -1,7 +1,8 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect
+from django.contrib.auth import logout
 
 from crm.forms import WorkInquiryContactForm
 from drip.forms import DripSubscriberForm

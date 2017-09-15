@@ -2,10 +2,12 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib import messages 
 from django.http import HttpResponseRedirect
 from django.core.exceptions import MultipleObjectsReturned
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import DripSubscriberForm
 
-from .models import DripSubscriber
+from .models import DripSubscriber, DripSubscriberList, DripMessage
 
 
 def subscribe(request):
@@ -48,3 +50,38 @@ def subscribe(request):
                 return HttpResponseRedirect(reverse_lazy('index'))
 
     return HttpResponseRedirect(reverse_lazy("index"))
+
+
+@login_required
+def drip_dashboard(request):
+    """
+    main area of drip functionality
+    """
+    return render(request, "drip-dashboard.html")
+
+
+@login_required
+def drip_subscribers(request):
+    """
+    Dashboard for subscriber data and admin 
+    """
+    return render(
+        request,
+        "drip-subscribers.html",
+        {"subscribers": DripSubscriber.objects.all()}
+        )
+
+
+@login_required
+def drip_subscriber_status(request, user_id):
+    """
+    Update the status of a drip subscriber
+    to active / inactive
+    """
+    drip_subscriber = get_object_or_404(DripSubscriber, id=user_id)
+
+    drip_subscriber.active = False if drip_subscriber.active == True else True
+
+    drip_subscriber.save()
+
+    return HttpResponseRedirect(reverse_lazy("drip_subscribers"))

@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'cms.apps.CmsConfig',
     'crm.apps.CrmConfig',
     'drip.apps.DripConfig',
+    'messaging.apps.MessagingConfig',
 ]
 
 MIDDLEWARE = [
@@ -95,5 +96,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = '/amy/'
 
 from environment_settings import *
