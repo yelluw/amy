@@ -20,36 +20,56 @@
                         <thead>
                             <tr>
                                 <th>
-                                    Name
+                                    Email
                                 </th>
 
                                 <th>
-                                    Created
+                                    Date Created
                                 </th>
 
                                 <th>
-                                    Details
+                                    Active
+                                </th>
+
+                                <th>
+                                    Funnel Entry Point
+                                </th>
+
+                                <th>
+                                    Lists
                                 </th>
                             </tr>
                          </thead>
                         
 
-                        {% for subscriber_list in subscriber_lists %}
+                        {% for subscriber in drip_subscriber_list_subscribers %}
                             <tr>
                                 <td>
-                                    {{subscriber_list.name}}
+                                    {{subscriber.email}}
                                 </td>
 
                                 <td>
-                                    {{subscriber_list.created}}
+                                    {{subscriber.created}}
                                 </td>
 
                                 <td>
-                                    <a href="{% url "drip_subscriber_list_subscriber" subscriber_list.id %}">
-                                        View Subscribers
+                                    {{subscriber.active}} 
+                                        <a href="{% url "drip_subscriber_status" subscriber.id %}" class="btn btn-xs btn-subscriber-status
+                                        {% if subscriber.active %}
+                                         btn-danger"> Deactivate
+                                        {% else %}
+                                        btn-success"> Activate
+                                        {% endif %}
                                     </a>
                                 </td>
 
+                                <td>
+                                    {{subscriber.funnel_entry_point}}
+                                </td>
+
+                                <td>
+                                    {{subscriber.drip_subscriber_lists.all|join:", " }}
+                                </td>
 
                             </tr>
                         {% endfor %}

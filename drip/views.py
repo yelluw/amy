@@ -97,3 +97,18 @@ def drip_subscriber_lists(request):
         "drip-subscriber-lists.html",
         {"subscriber_lists": DripSubscriberList.objects.all()}
     )
+
+
+@login_required
+def drip_subscriber_list_subscribers(request, drip_subscriber_list_id):
+    """
+    view subscribers for a given list
+    """
+    drip_subscriber_list = get_object_or_404(DripSubscriberList, id=drip_subscriber_list_id)
+
+    drip_subscribers = DripSubscriber.objects.filter(drip_subscriber_lists__id=drip_subscriber_list.id)
+
+    return render(
+        request,
+        "drip-subscriber-list-subscribers.html",
+        {"drip_subscriber_list_subscribers": drip_subscribers})
