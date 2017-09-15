@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 
 from drip.models import DripSubscriber, DripSubscriberList, DripMessage
-from drip.forms import DripSubscriberForm
+from drip.forms import DripSubscriberForm, CreateDripSubscriberListForm, UpdateDripSubscriberListForm
 from drip.tracking import tracking_string
 
 #command: python3 manage.py test --verbosity=2
@@ -296,6 +296,37 @@ class DripSubscriberFormUnitTest(TestCase):
             "funnel_entry_point":"URI: test, location: test"
         }
         form = DripSubscriberForm(data=data)
+        self.assertTrue(form.is_valid())
+
+
+class CreateDripSubscriberListFormUnitTest(TestCase):
+    """
+    Test CreateDripSubscriberListForm
+    """
+
+
+    def test_create_drip_subscriber_list_form(self):
+        data = {
+            "name": "test"
+        }
+
+        form = CreateDripSubscriberListForm(data=data)
+        self.assertTrue(form.is_valid())
+
+
+class UpdateDripSubscriberListFormUnitTest(TestCase):
+    """
+    Test UpdateDripSubscriberListForm
+    """
+
+
+    def test_update_drip_subscriber_list_form(self):
+        data = {
+            "name": "test",
+            "drip_subscriber_list_id": 1
+        }
+
+        form = UpdateDripSubscriberListForm(data=data)
         self.assertTrue(form.is_valid())
 
 
