@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 
 from drip.models import DripSubscriber, DripSubscriberList, DripMessage
-from drip.forms import DripSubscriberForm, CreateDripSubscriberListForm, UpdateDripSubscriberListForm
+from drip.forms import *
 from drip.tracking import tracking_string
 
 #command: python3 manage.py test --verbosity=2
@@ -411,6 +411,23 @@ class UpdateDripSubscriberListFormUnitTest(TestCase):
         }
 
         form = UpdateDripSubscriberListForm(data=data)
+        self.assertTrue(form.is_valid())
+
+
+class EmailSingleDripSubscriberFormUnitTest(TestCase):
+    """
+    Test EmailSingleDripSubscriberForm
+    """
+
+
+    def test_email_single_drip_subscriber_form(self):
+        data = {
+            "email": "a@a.com",
+            "subject": "test",
+            "message": "test message"
+        }
+
+        form = EmailSingleDripSubscriberForm(data=data)
         self.assertTrue(form.is_valid())
 
 
