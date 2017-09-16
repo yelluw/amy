@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}Drip Messages{% endblock title %}
+
+{% block content %}
+
+{% include "header.html" %}
+
+{% include "drip-navigation.html" %}
+
+<div class="drip-subscribers">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p>Title:</p>
+                <p>{{ drip_message.title }}</p>
+                <hr>
+
+                <p>Created: {{ drip_message.created }}</p>
+                <p>Published: <strong>{{ drip_message.published }}</strong></p>
+                <p>Author: {{ drip_message.author }}</p>
+                <hr>
+
+                <p>Body:</p>
+                <p>{{ drip_message.body|linebreaks }}</p>
+                <hr>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

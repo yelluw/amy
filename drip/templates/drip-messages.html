@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}Drip Messages{% endblock title %}
+
+{% block content %}
+
+{% include "header.html" %}
+
+{% include "drip-navigation.html" %}
+
+<div class="drip-subscribers">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        
+                        <thead>
+                            <tr>
+                                <th>
+                                    Title
+                                </th>
+
+                                <th>
+                                    Created
+                                </th>
+
+                                <th>
+                                    Published
+                                </th>
+
+                                <th>
+                                    Author
+                                </th>
+
+                            </tr>
+                         </thead>
+                        
+
+                        {% for message in drip_messages %}
+                            <tr>
+                                <td>
+                                    <a href="{% url "drip_message" message.id %}">{{ message.title }}</a>
+                                </td>
+
+                                <td>
+                                    {{ message.created }}
+                                </td>
+
+                                <td>
+                                    {{ message.published }}
+                                </td>
+
+                                <td>
+                                    {{ message.author }}
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>                
+
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+{% endblock content %}
