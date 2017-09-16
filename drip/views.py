@@ -9,6 +9,8 @@ from .forms import *
 
 from .models import DripSubscriber, DripSubscriberList, DripMessage
 
+from messaging.email import send_email
+
 
 def subscribe(request):
     """
@@ -197,6 +199,27 @@ def email_single_drip_subscriber(request):
     """
     view to email single drip subscriber
     """
+    if request.method == 'POST':
+        form = EmailSingleDripSubscriberForm(request.POST)
+
+        if form.is_valid():
+
+            sent = send_email(
+                form.cleaned_data["subject"],
+                form.cleaned_data["message"],
+                form.cleaned_data["email"]
+            )
+
+            if sent:
+                messages.success(request, "single-email-message-sent")
+            else:
+                messages.error(request, "single-email-message-error")
+
+        else:
+            messages.error(request, "single-email-message-error")
+
+        return HttpResponseRedirect(reverse_lazy("email_single_drip_subscriber"))
+
     return render(
         request,
         "email-single-drip-subscriber.html",

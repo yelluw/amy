@@ -40,6 +40,6 @@ class EmailSingleDripSubscriberForm(forms.Form):
 
     ATTRS = {"class": "form-control"}
 
-    email = forms.CharField(widget=forms.TextInput(attrs=ATTRS))
+    email = forms.EmailField(widget=forms.EmailInput(attrs=ATTRS))
     subject = forms.CharField(widget=forms.TextInput(attrs=ATTRS))
     message = forms.CharField(widget=forms.Textarea(attrs=ATTRS))

@@ -190,6 +190,12 @@ class DripIntegrationTest(TestCase):
             author=self.user
         )
 
+        self.email_single_drip_subscriber_form_data = {
+            "email": "a@a.com",
+            "subject": "test",
+            "message": "test message"
+        }
+
 
     def test_subscribe_view_does_302_redirect(self):
         response = self.client.post(reverse_lazy("subscribe"), data=self.data)
@@ -376,6 +382,12 @@ class DripIntegrationTest(TestCase):
         logged_in = self.client.login(username="test", password="hello_world")
         response = self.client.get(reverse_lazy("email_single_drip_subscriber"))
         self.assertEqual(response.status_code, 200)
+
+
+    def test_email_single_drip_subscriber_view_redirects_on_successful_post(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.post(reverse_lazy("email_single_drip_subscriber"), data=self.email_single_drip_subscriber_form_data)
+        self.assertEqual(response.status_code, 302)
 
 
 class DripSubscriberFormUnitTest(TestCase):
