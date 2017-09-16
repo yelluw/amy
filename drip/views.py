@@ -5,7 +5,7 @@ from django.core.exceptions import MultipleObjectsReturned
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import DripSubscriberForm, CreateDripSubscriberListForm, UpdateDripSubscriberListForm
+from .forms import *
 
 from .models import DripSubscriber, DripSubscriberList, DripMessage
 
@@ -189,4 +189,16 @@ def drip_message(request, message_id):
         request,
         "drip-message.html",
         {"drip_message": get_object_or_404(DripMessage, id=message_id)}
+    )
+
+
+@login_required
+def email_single_drip_subscriber(request):
+    """
+    view to email single drip subscriber
+    """
+    return render(
+        request,
+        "email-single-drip-subscriber.html",
+        {"form": EmailSingleDripSubscriberForm()}
     )

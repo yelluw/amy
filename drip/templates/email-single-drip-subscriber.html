@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}Email Single Drip Subscriber{% endblock title %}
+
+{% block content %}
+
+{% include "header.html" %}
+
+{% include "drip-navigation.html" %}
+
+<div class="prospect-contact-form" id="prospect-contact-form">
+        
+            <div class="container">
+        
+            <div class="col-lg-10 col-md-10">
+                
+                    <div class="form-container">
+                        <form action="#" method="POST">{% csrf_token %}
+                            <p class="form-header">Email Single Drip Subscriber</p>
+        
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        {{ form.email.errors }}
+                                        <label for="form.email.id_for_label">Email</label>
+                                        {{ form.email }}
+                                    </div>
+                                </div>
+                            </div>
+        
+                                <div class="form-group">
+                                    {{ form.subject.errors }}
+                                    <label for="form.subject.id_for_label">Subject:</label>
+                                    {{ form.subject }}
+                                </div>
+
+                            
+
+                                <div class="form-group">
+                                    {{ form.message.errors }}
+                                    <label for="form.message.id_for_label">Message:</label>
+                                    {{ form.message }}
+                                </div>
+
+                            <button type="submit" class="btn btn-primary">Send</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+        <!-- end prospect-contact-form  -->
+        </div>
+{% endblock content %}        

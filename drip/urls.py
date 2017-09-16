@@ -26,6 +26,8 @@ urlpatterns = [
 
     url(r'^subscriber/status/(?P<user_id>\d+)/$', drip_subscriber_status, name="drip_subscriber_status"),
 
+    url(r'^subscriber/email/$', email_single_drip_subscriber, name="email_single_drip_subscriber"),
+
 
     url(r'^messages/$', drip_messages, name="drip_messages"),
 
