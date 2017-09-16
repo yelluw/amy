@@ -184,6 +184,12 @@ class DripIntegrationTest(TestCase):
             "id": self.drip_subscriber_list.id
         }
 
+        self.drip_message = DripMessage.objects.create(
+            title="test",
+            body="test message",
+            author=self.user
+        )
+
 
     def test_subscribe_view_does_302_redirect(self):
         response = self.client.post(reverse_lazy("subscribe"), data=self.data)
@@ -283,7 +289,7 @@ class DripIntegrationTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
 
-    def test_drip_subscriber_list_subscribers_view_returns_200_status_code_with_logged_in_user(self):        
+    def test_drip_subscriber_list_subscribers_view_returns_200_status_code_with_logged_in_user(self):
         logged_in = self.client.login(username="test", password="hello_world")
         response = self.client.get(reverse_lazy("drip_subscriber_list_subscribers", kwargs={"drip_subscriber_list_id": self.drip_subscriber_list.id}))
         self.assertEqual(response.status_code, 200)
@@ -333,10 +339,32 @@ class DripIntegrationTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
 
-    def test_delete_drip_subscriber_list_subscribers_view_returns_302_status_code_with_logged_in_user(self):        
+    def test_delete_drip_subscriber_list_subscribers_view_returns_302_status_code_with_logged_in_user(self):
         logged_in = self.client.login(username="test", password="hello_world")
         response = self.client.get(reverse_lazy("delete_drip_subscriber_list", kwargs={"drip_subscriber_list_id": self.drip_subscriber_list.id}))
         self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_messages_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("drip_messages"))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_messages_view_returns_200_status_code_with_logged_in_user(self): 
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_messages"))
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_drip_message_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("drip_message", kwargs={"message_id": self.drip_message.id}))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_drip_message_view_returns_200_status_code_with_logged_in_user(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("drip_message", kwargs={"message_id": self.drip_message.id}))
+        self.assertEqual(response.status_code, 200)
 
 
 class DripSubscriberFormUnitTest(TestCase):
