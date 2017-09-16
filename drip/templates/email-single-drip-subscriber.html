@@ -17,7 +17,7 @@
             <div class="col-lg-10 col-md-10">
                 
                     <div class="form-container">
-                        <form action="#" method="POST">{% csrf_token %}
+                        <form action="{% url "email_single_drip_subscriber" %}" method="POST">{% csrf_token %}
                             <p class="form-header">Email Single Drip Subscriber</p>
         
                             <div class="row">

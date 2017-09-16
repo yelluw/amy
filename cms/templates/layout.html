@@ -73,6 +73,14 @@
               {% include "work-inquiry-contact-error.html" %} 
           {% endif %}
 
+          {% if message.message == "single-email-message-sent" %}
+            {% include "single-email-message-sent.html" %} 
+          {% endif %}
+
+          {% if message.message == "single-email-message-error" %}
+            {% include "single-email-message-error.html" %} 
+          {% endif %}
+
         {% endfor %}
       
         {% endif %}
