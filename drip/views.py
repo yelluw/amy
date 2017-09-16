@@ -171,10 +171,22 @@ def drip_subscriber_list_subscribers(request, drip_subscriber_list_id):
 @login_required
 def drip_messages(request):
     """
-    view drip messages
+    view all drip messages
     """
     return render(
         request,
         "drip-messages.html",
         {"drip_messages": DripMessage.objects.all()}
+    )
+
+
+@login_required
+def drip_message(request, message_id):
+    """
+    view one drip message by id
+    """
+    return render(
+        request,
+        "drip-message.html",
+        {"drip_message": get_object_or_404(DripMessage, id=message_id)}
     )

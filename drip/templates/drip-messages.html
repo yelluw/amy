@@ -42,7 +42,7 @@
                         {% for message in drip_messages %}
                             <tr>
                                 <td>
-                                    <a href="#">{{ message.title }}</a>
+                                    <a href="{% url "drip_message" message.id %}">{{ message.title }}</a>
                                 </td>
 
                                 <td>

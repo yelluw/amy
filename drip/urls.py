@@ -29,4 +29,6 @@ urlpatterns = [
 
     url(r'^messages/$', drip_messages, name="drip_messages"),
 
+    url(r'^message/(?P<message_id>\d+)/$', drip_message, name="drip_message"),
+
 ]
