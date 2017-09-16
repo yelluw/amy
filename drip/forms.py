@@ -31,3 +31,15 @@ class UpdateDripSubscriberListForm(forms.Form):
 
     name = forms.CharField(widget=forms.TextInput(attrs=ATTRS))
     drip_subscriber_list_id = forms.CharField(widget=forms.HiddenInput())
+
+
+class EmailSingleDripSubscriberForm(forms.Form):
+    """
+    Form to email a single drip subscriber
+    """
+
+    ATTRS = {"class": "form-control"}
+
+    email = forms.CharField(widget=forms.TextInput(attrs=ATTRS))
+    subject = forms.CharField(widget=forms.TextInput(attrs=ATTRS))
+    message = forms.CharField(widget=forms.Textarea(attrs=ATTRS))
