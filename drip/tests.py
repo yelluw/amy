@@ -367,6 +367,17 @@ class DripIntegrationTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
+    def test_email_single_drip_subscriber_view_redirects_when_user_not_logged_in(self):
+        response = self.client.get(reverse_lazy("email_single_drip_subscriber"))
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_email_single_drip_subscriber_view_returns_200_status_code_with_logged_in_user(self):
+        logged_in = self.client.login(username="test", password="hello_world")
+        response = self.client.get(reverse_lazy("email_single_drip_subscriber"))
+        self.assertEqual(response.status_code, 200)
+
+
 class DripSubscriberFormUnitTest(TestCase):
     """
     Test the actual DripSubscriberForm

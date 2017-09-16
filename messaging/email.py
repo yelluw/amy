@@ -3,7 +3,10 @@ from smtplib import SMTPException
 from django.core.mail import send_mail
 
 
-def send_email(to, subject, message):
+DEFAULT_EMAIL_ADDRESS = "yelluwbusinessnewsletter@yelluw.com"
+
+
+def send_email(subject, message, to_address, from_address=DEFAULT_EMAIL_ADDRESS):
     """
     Sends am email to a single recipient
     using django's send_mail() functionality.
@@ -14,8 +17,8 @@ def send_email(to, subject, message):
         sent = send_mail(
             subject,
             message,
-            'yelluwbusinessnewsletter@yelluw.com',
-            [to],
+            from_address,
+            [to_address],
             fail_silently=False,
         )
 
@@ -31,7 +34,7 @@ def send_email(to, subject, message):
     return False
 
 
-def send_multiple_emails(to_list, subject, message):
+def send_multiple_emails(subject, message, to_list, from_address=DEFAULT_EMAIL_ADDRESS):
     """
     Sends a email to a list of
     recipients using django's
