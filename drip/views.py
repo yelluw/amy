@@ -166,3 +166,15 @@ def drip_subscriber_list_subscribers(request, drip_subscriber_list_id):
         request,
         "drip-subscriber-list-subscribers.html",
         {"drip_subscriber_list_subscribers": drip_subscribers})
+
+
+@login_required
+def drip_messages(request):
+    """
+    view drip messages
+    """
+    return render(
+        request,
+        "drip-messages.html",
+        {"drip_messages": DripMessage.objects.all()}
+    )
